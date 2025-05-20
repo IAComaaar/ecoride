@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once 'auth-check.php';
+require_once 'auth-check-admin.php';
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -42,11 +41,6 @@ if (isset($_POST['suspendre']) && isset($_POST['suspendre_id'])) {
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
-// Afin de protéger l'accès
-if (!isset($_SESSION['id_user']) || $_SESSION['role'] !== 'admin') {
-    die("Accès réservé à l'administrateur. ⛔");
-}
 
 // Les covoiturages par jour
 $stmt = $pdo->query("SELECT date, COUNT(*) AS total FROM covoiturage GROUP BY date ORDER BY date ASC");
