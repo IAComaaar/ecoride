@@ -1,4 +1,4 @@
-# 🌱 EcoRide – Mise en place
+# 🌿 EcoRide – Mise en place
 
 ## Préambule
 
@@ -7,13 +7,13 @@ Aucun gestionnaire de paquets comme `npm` ou `composer` n’est requis.
 
 ---
 
-## Dépendances
+## 📦 Dépendances
 
 Aucune dépendance externe à installer. Tous les scripts front-end utilisent **Bootstrap**, et les graphiques sont générés avec **Chart.js** via un CDN.
 
 ---
 
-## Base de données & Authentification
+## 🗄️ Base de données & Authentification
 
 1. Placez le dossier `/ecoride` dans `htdocs/` de XAMPP.
 2. Démarrez Apache et MySQL via le panneau de contrôle XAMPP.
@@ -29,7 +29,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=ecoride', 'root', '');
 
 ---
 
-## Lancement
+## 🚀 Lancement
 
 ### Backend
 
@@ -46,7 +46,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=ecoride', 'root', '');
 
 ---
 
-## Options de sécurité & debug
+## 🔐 Options de sécurité & debug
 
 - Prévention des injections SQL avec **requêtes préparées (PDO)**.
 - Protection XSS via `htmlspecialchars()`.
@@ -59,7 +59,7 @@ error_reporting(E_ALL);
 
 ---
 
-## Fonctionnalités de l’administration
+## 🔍 Fonctionnalités de l’administration
 
 - Création de comptes employés
 - Suspension de comptes utilisateurs
@@ -69,11 +69,24 @@ error_reporting(E_ALL);
 
 ---
 
-## Remarques
+## 📚 Remarques
 
 - Le projet ne dépend d'aucun framework externe pour mettre en avant une logique **100% native PHP**.
 - Tous les scripts JS ou CSS sont chargés via CDN pour limiter la configuration.
 
 ---
+
+## Bonnes pratiques Git utilisées
+
+- Branche principale : `main`
+- Branche de développement : `dev`
+- Fonctionnalités développées sur des branches `feature/<nom>`, ex : `feature/recherche`
+
+### Processus utilisé :
+1. Développement d’une fonctionnalité dans `feature/...`
+2. Merge vers `dev` après test
+3. Merge de `dev` vers `main` une fois l’application validée
+
+Ce workflow permet un développement structuré, évitant les conflits et facilitant la validation étape par étape.
 
 <small>EcoRide - Projet ECF 2025 🌱</small>
