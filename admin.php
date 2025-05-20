@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'connexion.php';
+require_once 'auth-check.php';
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -170,7 +170,8 @@ const chartCredits = new Chart(ctxCredits, {
     </thead>
     <tbody>
         <?php
-        $stmt = $pdo->query("SELECT * FROM utilisateur WHERE id_user != {$_SESSION['id_user']}");
+        $stmt = $pdo->prepare("SELECT * FROM utilisateur WHERE id_user != ?");
+        $stmt->execute([$_SESSION['id_user']]);
         $comptes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($comptes as $compte) :
