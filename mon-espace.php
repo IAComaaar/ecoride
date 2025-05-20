@@ -6,7 +6,7 @@ if (!isset($_SESSION['id_user'])) {
     exit;
 }
 
-require_once 'connexion.php';
+require_once 'auth-check.php';
 
 // Pour simuler un utilisateur connecté (à retirer quand le système login sera prêt)
 $_SESSION['id_user'] = 1;

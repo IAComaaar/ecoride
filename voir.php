@@ -6,7 +6,7 @@ if (!isset($_SESSION['id_user'])) {
     exit;
 }
 
-require_once 'connexion.php';
+require_once 'auth-check.php';
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);

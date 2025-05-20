@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'connexion.php';
+require_once 'auth-check-employe.php';
 
 if (!isset($_SESSION['id_user']) || $_SESSION['role'] !== 'employe') {
     die("Accès réservé aux employés.");

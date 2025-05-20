@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'connexion.php';
+require_once 'auth-check.php';
 
 if (!isset($_SESSION['id_user'])) {
     header("Location: login.php");
