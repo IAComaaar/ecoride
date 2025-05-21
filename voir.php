@@ -1,12 +1,6 @@
 <?php
 session_start();
-
-if (!isset($_SESSION['id_user'])) {
-    header('Location: login.php');
-    exit;
-}
-
-require_once 'auth-check.php';
+require_once 'connexion.php';  // Ne gardez qu'une seule connexion
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -27,11 +21,15 @@ $stmt->execute(['id' => $id]);
 $trajet = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (isset($_POST['participer'])) {
-    if(!isset($_SESSION['id-user'])) {
-        echo "<div class ='alert alert-warning text-center'>Vous devez être connecté pour participer.</div>";
+    if(!isset($_SESSION['id_user'])) {
+        // Rediriger vers login avec l'ID du trajet en paramètre URL
+        header('Location: login.php?redirect=trajet&id_trajet=' . $id);
+        exit;
     } else {
+        // L'utilisateur est connecté, continuer avec le traitement normal
         $userId = $_SESSION['id_user'];
 
+        // Vérifier les crédits
         $stmt = $pdo->prepare("SELECT credit FROM utilisateur WHERE id_user = ?");
         $stmt->execute([$userId]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -41,18 +39,24 @@ if (isset($_POST['participer'])) {
         } elseif ($trajet['nb_places'] < 1) {
             echo "<div class='alert alert-danger text-center'>Plus aucune place disponible.</div>";
         } else {
+            // Vérifier si l'utilisateur est déjà inscrit
             $stmt = $pdo->prepare("SELECT * FROM participation WHERE id_user = ? AND id_covoiturage = ?");
+            $stmt->execute([$userId, $id]);
 
             if ($stmt->rowCount() > 0) {
                 echo "<div class='alert alert-info text-center'>Vous êtes déjà inscrit à ce trajet.</div>";
             } else {
+                // Ajouter la participation
                 $pdo->prepare("INSERT INTO participation (id_user, id_covoiturage, status, confirmation)
                 VALUES (?, ?, 'confirmé', 1)")->execute([$userId, $id]);
 
+                // Déduire les crédits
                 $pdo->prepare("UPDATE utilisateur SET credit = credit - 2 WHERE id_user = ?")->execute([$userId]);
+                
+                // Diminuer le nombre de places
                 $pdo->prepare("UPDATE covoiturage SET nb_places = nb_places - 1 WHERE id_covoiturage = ?")->execute([$id]);
 
-                echo "<div class='alert alert-success text-center'>Participation confirmé ✅</div>";
+                echo "<div class='alert alert-success text-center'>Participation confirmée ✅</div>";
             }
         }
     }

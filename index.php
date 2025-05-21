@@ -9,6 +9,7 @@ session_start();
     <title>EcoRide - Accueil</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 <body>
 
@@ -20,25 +21,23 @@ session_start();
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/ecoride/index.php">Accueil</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/ecoride/recherche.php">Covoiturages</a>
-            </li>
-            
-            <?php
-            if (isset($_SESSION['id_user'])) {
-                if (basename($_SERVER['PHP_SELF']) !== 'mon-espace.php') {
-                    echo '<li class="nav-item">
-                    <a class="nav-link" href="/ecoride/mon-espace.php">Mon compte</a>
-                    </li>';}
-                } else {
-                    echo '<li class="nav-item">
-                    <a class="nav-link" href="/ecoride/login.php">Connexion</a>
-                    </li>';}
-                    ?>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/ecoride/index.php">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/ecoride/recherche.php">Covoiturages</a>
+                </li>
+                
+                <?php if (isset($_SESSION['id_user'])) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ecoride/mon-espace.php">Mon compte</a>
+                    </li>
+                    <?php else : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/ecoride/login.php">Connexion</a>
+                        </li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
@@ -54,7 +53,48 @@ session_start();
 
     <!-- CONTENU PRINCIPAL -->
     <main class="flex-fill">
+    <section class="eco-section py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Colonne de gauche (image) -->
+      <div class="col-md-6 mb-4 mb-md-0">
+        <img src="img/eco-road.jpg" class="img-fluid rounded shadow-lg" alt="Voyage écologique">
+      </div>
+      
+      <!-- Colonne de droite (texte) -->
+      <div class="col-md-6">
+        <h2 class="text-success mb-3">Covoiturage responsable</h2>
+        <p class="lead">Rejoignez notre communauté et participez à un mode de transport plus écologique et économique.</p>
         
+        <div class="mt-4">
+          <div class="d-flex align-items-center mb-3">
+            <i class="bi bi-flower1 text-success fs-4 me-3"></i>
+            <div>
+              <strong>Réduisez votre empreinte carbone</strong>
+              <p class="mb-0 text-muted">Chaque trajet partagé diminue les émissions de CO₂</p>
+            </div>
+          </div>
+          
+          <div class="d-flex align-items-center mb-3">
+            <i class="bi bi-piggy-bank-fill text-success fs-4 me-3"></i>
+            <div>
+              <strong>Économisez sur vos déplacements</strong>
+              <p class="mb-0 text-muted">Partagez les frais de carburant et réduisez vos dépenses</p>
+            </div>
+          </div>
+          
+          <div class="d-flex align-items-center">
+            <i class="bi bi-people-fill text-success fs-4 me-3"></i>
+            <div>
+              <strong>Créez des liens</strong>
+              <p class="mb-0 text-muted">Rencontrez de nouvelles personnes lors de vos trajets</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
     </main>
 
     <!-- FOOTER EN BAS -->

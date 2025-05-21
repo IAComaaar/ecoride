@@ -11,22 +11,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = htmlspecialchars($_POST['email']);
     $mot_de_passe = $_POST['mot_de_passe'];
 
-    // Chercher l'utilisateur par email
     $stmt = $pdo->prepare("SELECT * FROM utilisateur WHERE email = ?");
     $stmt->execute([$email]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
+    // Dans login.php, recherchez ce bloc de code qui gère la connexion réussie
     if ($user && password_verify($mot_de_passe, $user['mot_de_passe'])) {
         $_SESSION['id_user'] = $user['id_user'];
         $_SESSION['pseudo'] = $user['pseudo'];
         $_SESSION['role'] = $user['role'];
-
-        // Redirection vers l'espace utilisateur
+    
+        // Vérifier paramètre URL
+        if (isset($_GET['redirect']) && $_GET['redirect'] == 'trajet' && isset($_GET['id_trajet'])) {
+            $trajet_id = intval($_GET['id_trajet']);
+            header('Location: voir.php?id=' . $trajet_id);
+            exit;
+        }
+    
+        // Redirection standard
         header('Location: mon-espace.php');
         exit;
-    } else {
-        $message = "Identifiants incorrects. ❌";
-    }
+    }else {
+    $message = "Identifiants incorrects. ❌";
+}
 }
 ?>
 
@@ -51,6 +57,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php if ($message): ?>
         <div class="alert alert-danger text-center"><?php echo $message; ?></div>
     <?php endif; ?>
+
+    <?php if (isset($_GET['redirect']) && $_GET['redirect'] == 'trajet'): ?>
+        <div class="alert alert-info text-center mb-4">
+            Connectez-vous pour finaliser votre participation au trajet
+        </div>
+    <?php endif; ?>
+
 
     <form method="POST">
         <div class="mb-3">

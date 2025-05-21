@@ -63,29 +63,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!-- Navbar -->
  <nav class="navbar navbar-expand-lg navbar-dark bg-success">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/ecoride/index.php">EcoRide</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/ecoride/index.php">Accueil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/ecoride/recherche.php">Covoiturages</a>
+            </li>
+            
+            <?php if (isset($_SESSION['id_user'])) : ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="/ecoride/index.php">Accueil</a>
-                </li>
-                <?php
-            if (isset($_SESSION['id_user'])) {
-                if (basename($_SERVER['PHP_SELF']) !== 'mon-espace.php') {
-                    echo '<li class="nav-item">
                     <a class="nav-link" href="/ecoride/mon-espace.php">Mon compte</a>
-                    </li>';}
-                } else {
-                    echo '<li class="nav-item">
-                    <a class="nav-link" href="/ecoride/login.php">Connexion</a>
-                    </li>';}
-                    ?>
-            </ul>
+                </li>
+                
+                <?php else : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ecoride/login.php">Connexion</a>
+                    </li>
+                    <?php endif; ?>
+                </ul>
+            </div>
         </div>
-    </div>
  </nav>
 
  <!-- Formulaire de recherche -->
@@ -99,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="text" class="form-control" id="depart" name="depart" placeholder="Ex: Paris" required>
             </div>
             <div class="col">
-            <label for="arrivee" class="form-label">Ville de d'arrivée</label>
+            <label for="arrivee" class="form-label">Ville d'arrivée</label>
             <input type="text" class="form-control" id="arrivee" name="arrivee" placeholder="Ex: Lyon" required>
             </div>
             <div class="col">
