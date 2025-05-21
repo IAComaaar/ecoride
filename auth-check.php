@@ -1,5 +1,4 @@
 <?php
-
 require_once 'connexion.php'; 
 session_start();
 if (!isset($_SESSION['id_user'])) {
@@ -7,8 +6,8 @@ if (!isset($_SESSION['id_user'])) {
     exit;
 }
 
-require_once 'connexion.php';
 $stmt = $pdo->prepare("SELECT id_user, role FROM utilisateur WHERE id_user = :id");
-$stmt->execute([$_SESSION['id_user']]);
+$stmt->bindParam(':id', $_SESSION['id_user']);
+$stmt->execute();
 $user = $stmt->fetch();
 ?>
