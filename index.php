@@ -58,7 +58,7 @@ session_start();
     <div class="row align-items-center">
       <!-- Colonne de gauche (image) -->
       <div class="col-md-6 mb-4 mb-md-0">
-        <img src="img/eco-road.jpg" class="img-fluid rounded shadow-lg" alt="Voyage écologique">
+        <img src="/img/eco-road.jpg" class="img-fluid rounded shadow-lg" alt="Voyage écologique">
       </div>
       
       <!-- Colonne de droite (texte) -->
