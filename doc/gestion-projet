@@ -1,0 +1,98 @@
+# Gestion de projet EcoRide
+
+## Approche méthodologique
+
+Pour développer EcoRide, j'ai adopté une approche Agile simplifiée, inspirée principalement de Scrum et Kanban. Cette méthodologie a été choisie pour sa flexibilité et sa capacité à s'adapter aux changements de priorités, tout en maintenant un processus de développement structuré.
+
+## Organisation du travail
+
+### Découpage en sprints
+Le développement a été organisé en sprints de 2 semaines, avec une planification au début de chaque cycle. Cette approche a permis de :
+- Maintenir un rythme de développement constant
+- Livrer régulièrement des fonctionnalités opérationnelles
+- Réajuster les priorités au besoin
+
+### Kanban partagé
+L'outil principal de suivi est un tableau Kanban sur Trello, accessible à l'adresse : [https://trello.com/invite/b/67f4553a7d381eec3a7958cd/ATTIb46555c4c4f48c7edc113c5dc0454ac3861076E8/projet-ecoride]
+
+Ce tableau est structuré en 5 colonnes :
+1. **Backlog** : Toutes les fonctionnalités prévues, ordonnées par priorité
+2. **À faire** : Fonctionnalités planifiées pour le sprint actuel
+3. **En cours** : Développement actif
+4. **Terminées (dev)** : Fonctionnalités complétées sur la branche de développement
+5. **En production (main)** : Fonctionnalités déployées sur la branche principale
+
+### Estimation et priorisation
+Chaque fonctionnalité a été évaluée selon :
+- **Complexité technique** (1-5)
+- **Valeur utilisateur** (1-5)
+- **Risque** (1-3)
+
+La priorisation a été effectuée en tenant compte de ces facteurs, en privilégiant les fonctionnalités à forte valeur utilisateur et faible complexité pour les premiers sprints.
+
+## Gestion du code source
+
+### Workflow Git
+L'approche Git Flow a été adoptée avec :
+- Une branche `main` pour le code stable
+- Une branche `dev` pour l'intégration
+- Des branches `feature/xxx` pour chaque fonctionnalité
+
+Ce workflow a permis de :
+- Garantir la stabilité de la branche principale
+- Faciliter le développement parallèle de plusieurs fonctionnalités
+- Simplifier l'intégration continue
+
+### Conventions et règles
+- Commit réguliers avec messages explicites
+- Revue de code avant chaque merge vers `dev`
+- Tests manuels avant chaque merge vers `main`
+- Protection de la branche `main` contre les push directs
+
+## Difficultés rencontrées et solutions
+
+### Challenge 1 : Gestion des crédits utilisateurs
+**Problème** : Incohérences dans le débit/crédit lors des annulations de trajets.  
+**Solution** : Mise en place d'un système de transactions avec journalisation des opérations.
+
+### Challenge 2 : Optimisation mobile
+**Problème** : Interface peu adaptée aux petits écrans dans les premiers développements.  
+**Solution** : Refactorisation avec approche "mobile-first" et tests sur différents appareils.
+
+### Challenge 3 : Sécurité des sessions
+**Problème** : Duplication du code d'authentification sur chaque page protégée.  
+**Solution** : Centralisation avec le système auth_check.php.
+
+## Évolution du projet
+
+### Métriques et suivi
+- **Vélocité** : Progression de 5 à 8 User Stories par sprint
+- **Déploiements** : 3 versions majeures en production
+- **Bugs** : Réduction constante du nombre de bugs signalés
+
+### Améliorations du processus
+Au cours du projet, plusieurs ajustements ont été apportés :
+- Introduction de "daily stand-ups" personnels pour maintenir le focus
+- Ajout d'une phase de revue/rétrospective à la fin de chaque sprint
+- Amélioration de la documentation en parallèle du développement
+
+## Bilan et perspectives
+
+### Points forts
+- Développement rapide des fonctionnalités essentielles
+- Architecture flexible permettant des évolutions futures
+- Interface utilisateur intuitive et responsive
+
+### Axes d'amélioration
+- Automatisation des tests
+- Documentation technique plus approfondie
+- Mise en place d'un véritable CI/CD
+
+### Prochaines étapes
+- Intégration d'une API de cartographie
+- Système de notifications en temps réel
+- Application mobile native
+
+## Conclusion
+
+La méthodologie Agile simplifiée, combinée à un workflow Git structuré, a permis de développer EcoRide de manière efficace et contrôlée. Cette approche équilibrée entre rigueur et flexibilité a été essentielle pour maintenir la qualité tout en s'adaptant aux évolutions des besoins.
