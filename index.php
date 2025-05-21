@@ -23,19 +23,19 @@ session_start();
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php">Accueil</a>
+                    <a class="nav-link" href="/index.php">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="recherche.php">Covoiturages</a>
+                    <a class="nav-link" href="/recherche.php">Covoiturages</a>
                 </li>
                 
                 <?php if (isset($_SESSION['id_user'])) : ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="mon-espace.php">Mon compte</a>
+                        <a class="nav-link" href="/mon-espace.php">Mon compte</a>
                     </li>
                     <?php else : ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="login.php">Connexion</a>
+                            <a class="nav-link" href="/login.php">Connexion</a>
                         </li>
                         <?php endif; ?>
                     </ul>
@@ -46,7 +46,7 @@ session_start();
      <section class="text-center p-5 bg-light">
         <div class="container">
             <h1 class="mb-4">Voyagez autrement, voyagez EcoRide 🚗</h1>
-           <a href="recherche.php" class="btn btn-success btn-lg">Rechercher un covoiturage</a>
+           <a href="/recherche.php" class="btn btn-success btn-lg">Rechercher un covoiturage</a>
         </div>
         </section>
 <body class="d-flex flex-column min-vh-100">
@@ -99,7 +99,7 @@ session_start();
 
     <!-- FOOTER EN BAS -->
     <footer class="bg-dark text-light text-center py-3 mt-auto">
-        © 2025 EcoRide | <a href="mentions-legales.php" class="text-light text-decoration-underline">Mentions légales</a> |
+        © 2025 EcoRide | <a href="/mentions-legales.php" class="text-light text-decoration-underline">Mentions légales</a> |
         <a href="mailto:contact@ecoride.fr" class="text-light">contact@ecoride.fr</a>
     </footer>
 

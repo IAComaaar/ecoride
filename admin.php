@@ -73,7 +73,7 @@ $totalCredits = $stmt->fetch(PDO::FETCH_ASSOC)['total_credits'] ?? 0;
 
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/ecoride/index.php">EcoRide Admin</a>
+        <a class="navbar-brand" href="/index.php">EcoRide Admin</a>
     </div>
 </nav>
 

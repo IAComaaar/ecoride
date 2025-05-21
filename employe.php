@@ -43,7 +43,7 @@ $problems = $pdo->query("SELECT a.*, u.pseudo, u.email, c.ville_depart, c.ville_
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
         <span class="navbar-brand">Espace Employé</span>
-        <a href="deconnexion.php" class="btn btn-outline-light">Déconnexion</a>
+        <a href="/deconnexion.php" class="btn btn-outline-light">Déconnexion</a>
     </div>
 </nav>
 

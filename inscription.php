@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <nav class="navbar navbar-dark bg-success">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/ecoride/index.php">EcoRide</a>
+        <a class="navbar-brand" href="/index.php">EcoRide</a>
     </div>
 </nav>
 

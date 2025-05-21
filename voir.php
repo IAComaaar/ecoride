@@ -75,7 +75,7 @@ if (isset($_POST['participer'])) {
     <!-- Navbar -->
      <nav class="navbar navbar-dark bg-sucess"
         <div class="container-fluid">
-           <a class="navbar-brand" href="/ecoride/index.php">EcoRide</a>
+           <a class="navbar-brand" href="/index.php">EcoRide</a>
         </div>
     </nav>
 
@@ -108,7 +108,7 @@ if (isset($_POST['participer'])) {
             </form>
 
             <div class="text-center mt-3">
-                <a href="/ecoride/recherche.php" class="btn btn-outline-secondary">⬅ Retour à la recherche</a>
+                <a href="/recherche.php" class="btn btn-outline-secondary">⬅ Retour à la recherche</a>
             </div>
         </div>
     </div>

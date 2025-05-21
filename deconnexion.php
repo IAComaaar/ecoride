@@ -2,5 +2,5 @@
 session_start();
 session_unset();
 session_destroy();
-header('Location: /ecoride/index.php');
+header('Location: index.php');
 exit;

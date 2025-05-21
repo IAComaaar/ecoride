@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <nav class="navbar navbar-dark bg-success">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/ecoride/index.php">EcoRide</a>
+        <a class="navbar-brand" href="/index.php">EcoRide</a>
     </div>
 </nav>
 
@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
 
     <div class="text-center mt-3">
-        <a href="/ecoride/inscription.php">Pas encore de compte ? Créez-en un</a>
+        <a href="/inscription.php">Pas encore de compte ? Créez-en un</a>
     </div>
 </div>
 

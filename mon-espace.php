@@ -112,9 +112,9 @@ $mesTrajets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <!-- Navbar -->
  <nav class="navbar navbar-dark bg-success">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/ecoride/index.php">EcoRide</a>
+        <a class="navbar-brand" href="/index.php">EcoRide</a>
         <div class="text-end mb-3">
-            <a href="/ecoride/deconnexion.php" class="btn btn-outline-danger">Déconnexion</a>
+            <a href="/deconnexion.php" class="btn btn-outline-danger">Déconnexion</a>
         </div>
     </div>
  </nav>
@@ -161,8 +161,8 @@ $mesTrajets = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php endif; ?>
 
 <div class="mb-4 text-end">
-    <a href="/ecoride/ajouter-vehicule.php" class="btn btn-outline-primary btn-sm">Ajouter un véhicule ➕</a>
-    <a href="/ecoride/creer-trajet.php" class="btn btn-outline-success btn-sm">Proposer un trajet ➕</a>
+    <a href="/ajouter-vehicule.php" class="btn btn-outline-primary btn-sm">Ajouter un véhicule ➕</a>
+    <a href="/creer-trajet.php" class="btn btn-outline-success btn-sm">Proposer un trajet ➕</a>
 </div>
 
     <hr class="my-5">
@@ -196,7 +196,7 @@ $mesTrajets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </form>
                 <?php endif; ?>
 
-                <!-- 🗑️ Bouton d'annulation -->
+                <!-- Bouton d'annulation -->
                 <form method="POST" class="mt-2">
                     <input type="hidden" name="id_trajet" value="<?php echo $trajet['id_covoiturage']; ?>">
                     <button type="submit" name="annuler_trajet" class="btn btn-danger btn-sm">Annuler ce trajet</button>

@@ -73,7 +73,7 @@ $message = ""; //Afin d'afficher plus tard
 
 <nav class="navbar navbar-dark bg-success">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/ecoride/index.php">EcoRide</a>
+        <a class="navbar-brand" href="/index.php">EcoRide</a>
         <ul class="navbar-nav ms-auto flex-row gap-3">
         <?php
         $current_page = basename($_SERVER['PHP_SELF']);
