@@ -44,10 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header bg-success text-white">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="card">
                         <h3 class="mb-0">Connexion</h3>
                     </div>
                     <div class="card-body">
