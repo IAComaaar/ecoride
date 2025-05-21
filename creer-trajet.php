@@ -11,9 +11,6 @@ require_once 'auth-check.php';
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Pour simuler un utilisateur connecté (à retirer quand le système login sera prêt)
-$_SESSION['id_user'] = 1;
-
 $id_user = $_SESSION['id_user'];
 
 $message = ""; // Message de confirmation si trajet créé
@@ -55,7 +52,7 @@ if(!isset($_SESSION['id_user'])) {
 }
 
 // Afin de récupérer les véhicules enregistrés par l'utilisateur
-$stmt = $pdo->prepare("SELECT * FROM vehicule WHERE id_user = ?");
+$stmt = $pdo->prepare("SELECT * FROM vehicule WHERE id_proprietaire = ?");
 $stmt->execute([$id_user]);
 $vehicules = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
