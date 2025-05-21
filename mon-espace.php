@@ -81,8 +81,8 @@ if (isset($_POST['annuler_trajet']) && isset($_POST['id_trajet'])) {
     $annulationMessage = "<div class='alert alert-info text-center'>Trajet annulé. Les passagers ont été notifiés (simulation). ✅</div>";
 }
 
-$stmt = $pdo->prepare("SELECT id_user, nom, prenom, email FROM utilisateur WHERE id_user = :id");
-$stmt->execute([$userId]);
+$stmt = $pdo->prepare("SELECT * FROM utilisateur WHERE id_user = :id AND email = :email");
+$stmt->execute([':id' => $id, ':email' => $email]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $stmt = $pdo->prepare("SELECT c.*, p.status 
