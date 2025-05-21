@@ -8,12 +8,7 @@ if (!isset($_SESSION['id_user'])) {
 }
 
 require_once 'connexion.php';
-$stmt = $pdo->prepare("SELECT suspendu FROM utilisateur WHERE id_user = ?");
+$stmt = $pdo->prepare("SELECT id_user, role FROM utilisateur WHERE id_user = :id");
 $stmt->execute([$_SESSION['id_user']]);
 $user = $stmt->fetch();
-if ($user && $user['suspendu'] == 1) {
-    session_destroy();
-    header('Location: login.php?error=account_suspended');
-    exit;
-}
 ?>
