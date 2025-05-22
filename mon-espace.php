@@ -234,23 +234,24 @@ try {
     
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="/index.php">EcoRide</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-        <div class="navbar-nav ms-auto">
-            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-                <a href="/admin.php" class="btn btn-outline-light btn-sm me-2">
-                    Admin 📊 
-                </a>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/index.php">EcoRide</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                    <li class="nav-item">
+                        <a href="/admin.php" class="btn btn-outline-light btn-sm me-2">
+                            📊 Admin
+                        </a>
+                    </li>
                 <?php endif; ?>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <div class="navbar-nav ms-auto">
-                            <a href="/deconnexion.php" class="btn btn-outline-light btn-sm">Déconnexion</a>
-            </div>
+                <li class="nav-item">
+                    <a href="/deconnexion.php" class="btn btn-outline-light btn-sm">Déconnexion</a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
