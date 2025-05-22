@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         if (isset($_GET['trajet_id'])) {
             $trajet_id = intval($_GET['trajet_id']);
-            header('Location: mon-espace.php?force_reservation=1&trajet_id=' . $trajet_id);
+            header('Location: voir.php?id=' . $trajet_id . '&connected=1');
         } else {
             header('Location: mon-espace.php');
         }
