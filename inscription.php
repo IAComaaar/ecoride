@@ -13,9 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mot_de_passe = $_POST['mot_de_passe'];
     $mot_de_passe_confirme = $_POST['mot_de_passe_confirme'];
 
-    // Vérification simple du mot de passe
+    // Vérification du mot de passe
     if ($mot_de_passe !== $mot_de_passe_confirme) {
-        $message = "❌ Les mots de passe ne correspondent pas.";
+        $message = "Les mots de passe ne correspondent pas. ❌ ";
     } else {
         $hash = password_hash($mot_de_passe, PASSWORD_DEFAULT);
 
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         } catch (PDOException $e) {
             if ($e->errorInfo[1] == 1062) {
-                $message = "❗ Un compte avec cet email existe déjà.";
+                $message = "Un compte avec cet email existe déjà ❗";
             } else {
                 throw $e;
             }
@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     <div class="mt-4 text-center">
     <?php if (!empty($message) && strpos($message, 'existe déjà') !== false): ?>
-        <!-- Si l'email existe déjà, proposer d'aller à la connexion -->
+        <!-- Si l'email existe déjà, proposition d'aller à la connexion -->
         <a href="login.php" class="btn btn-success">
             <i class="bi bi-arrow-left"></i> Aller à la connexion
         </a>
