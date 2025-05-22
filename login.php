@@ -6,6 +6,11 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+$success_message = "";
+if (isset($_GET['success']) && $_GET['success'] == 1) {
+    $success_message = "✅ Compte créé avec succès ! Vous pouvez maintenant vous connecter.";
+}
+
 // Si déjà connecté, rediriger vers l'espace utilisateur
 if (isset($_SESSION['id_user'])) {
     header('Location: mon-espace.php');
@@ -118,6 +123,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="login-header">
                         <h3 class="mb-0 text-center">Connexion</h3>
                     </div>
+                    <?php if (!empty($success_message)): ?>
+                        <div class="alert alert-success"><?php echo $success_message; ?></div>
+                        <?php endif; ?>
+                        <?php if (isset($error)): ?>
+                            <div class="alert alert-danger"><?php echo $error; ?></div>
+                            <?php endif; ?>
                     
                     <div class="login-body">
                         <?php if (isset($error)): ?>

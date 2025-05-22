@@ -22,7 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare("INSERT INTO utilisateur (pseudo, email, mot_de_passe, role, credit) VALUES (?, ?, ?, 'passager', 20)");
         try {
             $stmt->execute([$pseudo, $email, $hash]);
-            $message = "✅ Compte créé avec succès ! Vous pouvez maintenant vous connecter.";
+            header('Location: login.php?success=1');
+            exit;
         } catch (PDOException $e) {
             if ($e->errorInfo[1] == 1062) {
                 $message = "❗ Un compte avec cet email existe déjà.";
