@@ -64,6 +64,18 @@ if (isset($_GET['from_reservation']) && isset($_GET['trajet_id'])) {
 // Récupérer l'ID utilisateur de la session
 $userId = $_SESSION['id_user'];
 
+// Bouton retour si on vient d'un trajet via login
+if (isset($_GET['connected']) && isset($_GET['from_trajet'])) {
+    $trajet_id = intval($_GET['from_trajet']);
+    $annulationMessage .= "<div class='alert alert-info alert-dismissible fade show' role='alert'>
+        <i class='fas fa-info-circle'></i> Vous êtes maintenant connecté ! 
+        <a href='voir.php?id={$trajet_id}' class='btn btn-sm btn-primary ms-2'>
+            ← Retourner au trajet pour le réserver
+        </a>
+        <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+    </div>";
+}
+
 // Initialiser la variable pour les messages
 $annulationMessage = "";
 
