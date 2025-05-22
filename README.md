@@ -1,20 +1,23 @@
-# EcoRide 🌿  
+# EcoRide 🌿
+
 **Projet ECF 2025** – Application de covoiturage éco-responsable
 
 ## 🧠 Concept
 
-**EcoRide** est une plateforme web de covoiturage local, conçue pour encourager une mobilité durable et collaborative.  
-Les utilisateurs peuvent créer ou rejoindre des trajets en échange de crédits. Un système d’authentification avec rôles (utilisateur, employé, admin) gère les permissions et fonctionnalités disponibles.
+**EcoRide** est une plateforme web de covoiturage local, conçue pour encourager une mobilité durable et collaborative. 
+
+Les utilisateurs peuvent créer ou rejoindre des trajets en échange de crédits. Un système d'authentification avec rôles (utilisateur, employé, admin) gère les permissions et fonctionnalités disponibles.
 
 ---
 
 ## 🧱 Stack technique
 
 - **Backend** : PHP 8+ (sans framework)
-- **Base de données** : MySQL
+- **Base de données** : MySQL (local) / JawsDB MySQL (production)
 - **Frontend** : HTML, CSS, JavaScript (Bootstrap via CDN)
 - **Graphiques** : [Chart.js](https://www.chartjs.org/) via CDN
 - **Environnement** : Local via [XAMPP](https://www.apachefriends.org/index.html)
+- **Déploiement** : [Heroku](https://heroku.com) + JawsDB
 - **Gestion des utilisateurs** : Sessions PHP & `password_hash()`
 - **Sécurité** :
   - Requêtes préparées (PDO) pour éviter les injections SQL
@@ -25,14 +28,12 @@ Les utilisateurs peuvent créer ou rejoindre des trajets en échange de crédits
 ## ⚙️ Installation & Lancement
 
 ### Prérequis
-
 - [XAMPP](https://www.apachefriends.org/index.html) installé avec :
   - Apache activé
   - MySQL activé
 - PHP 8+
 
-### Étapes
-
+### Étapes (Local)
 1. Cloner ou copier le dossier `/ecoride` dans le répertoire `htdocs/` de XAMPP.
 2. Démarrer **Apache** et **MySQL** via le panneau XAMPP.
 3. Accéder à [phpMyAdmin](http://localhost/phpmyadmin) :
@@ -42,8 +43,30 @@ Les utilisateurs peuvent créer ou rejoindre des trajets en échange de crédits
    ```php
    $pdo = new PDO('mysql:host=localhost;dbname=ecoride', 'root', '');
    ```
-5. Lancer le projet :  
+5. Lancer le projet :
+   
    👉 [http://localhost/ecoride/](http://localhost/ecoride/)
+
+### Déploiement Heroku
+1. **Configuration Heroku**
+   ```bash
+   # Créer l'application
+   heroku create ecoride-app
+   
+   # Ajouter JawsDB MySQL
+   heroku addons:create jawsdb:kitefin
+   ```
+
+2. **Fichiers requis**
+   - `composer.json` : `{}`
+   - `Procfile` : `web: vendor/bin/heroku-php-apache2`
+
+3. **Déployer**
+   ```bash
+   git push heroku main
+   ```
+
+**🔗 Application déployée :** [https://ecoride-app.herokuapp.com](https://ecoride-app.herokuapp.com)
 
 ---
 
@@ -88,14 +111,13 @@ Sessions PHP sécurisées avec `password_hash()` pour le stockage des mots de pa
 - Maquettes disponibles dans `doc/maquettes/Maquette.pdf`
 
 ### Typographie
-
-- **Titres** : Montserrat  
-  - H1 : Bold, 32px  
-  - H2 : SemiBold, 24px  
-  - H3 : Medium, 20px  
-- **Texte** : Roboto  
-  - Texte principal : 16px  
-  - Texte secondaire : 14px  
+- **Titres** : Montserrat
+  - H1 : Bold, 32px
+  - H2 : SemiBold, 24px
+  - H3 : Medium, 20px
+- **Texte** : Roboto
+  - Texte principal : 16px
+  - Texte secondaire : 14px
 
 ---
 
@@ -136,13 +158,16 @@ git merge dev -> main
 ├── public/            # Pages accessibles
 ├── admin/             # Espace d'administration
 ├── assets/            # CSS / JS / images
+├── composer.json      # Configuration Heroku
+├── Procfile          # Configuration serveur Heroku
 ```
 
 ---
 
 ## 📚 Remarques
 
-Ce projet met l'accent sur une logique **100% native PHP**, sans frameworks.  
+Ce projet met l'accent sur une logique **100% native PHP**, sans frameworks. 
+
 Idéal pour comprendre les bases du web dynamique avec un MVC simplifié.
 
 ---

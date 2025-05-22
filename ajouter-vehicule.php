@@ -11,9 +11,6 @@ require_once 'auth-check.php';
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Afin de simuler un utilisateur connecté (à enlever plutard)
-$_SESSION['id_user'] = 1;
-
 // Afin de vérifier si connecté
 if (!isset($_SESSION['id_user'])) {
     die("Accès refusé : vous devez être connecté pour ajouter un véhicule.");
