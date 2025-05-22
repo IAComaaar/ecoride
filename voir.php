@@ -27,6 +27,7 @@ if (isset($_POST['participer'])) {
     if(!isset($_SESSION['id_user'])) {
         // Pas connecté - sauvegarder l'intention et rediriger
         $_SESSION['trajet_a_reserver'] = $id;
+        session_write_close(); 
         header('Location: login.php?redirect=' . urlencode($_SERVER['REQUEST_URI']));
         exit;
     } else {
@@ -150,8 +151,6 @@ if (isset($_SESSION['id_user']) && isset($_SESSION['trajet_a_reserver']) && $_SE
                 🧍‍♂️ <strong>Places restantes :</strong> <?php echo htmlspecialchars($trajet['nb_places']); ?><br>
                 🚘 <strong>Véhicule :</strong> <?php echo htmlspecialchars($trajet['marque']) . ' ' . htmlspecialchars($trajet['modele']); ?><br>
                 ⚡ <strong>Énergie :</strong> <?php echo htmlspecialchars($trajet['energie']); ?><br>
-                👤 <strong>Chauffeur :</strong> <?php echo htmlspecialchars($trajet['pseudo']); ?><br>
-                👤 <strong>Chauffeur :</strong> <?php echo htmlspecialchars($trajet['pseudo']); ?><br>
                 ⭐ <strong>Note :</strong> 
                 <?php if ($trajet['note_moyenne']): ?>
                     <?php echo number_format($trajet['note_moyenne'], 1); ?>/5 
