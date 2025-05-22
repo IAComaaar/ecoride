@@ -172,7 +172,7 @@ try {
     <div class="container-fluid">
         <a class="navbar-brand" href="/index.php">EcoRide</a>
         <div class="text-end mb-3">
-            <a href="/deconnexion.php" class="btn btn-outline-danger">Déconnexion</a>
+            <a href="/deconnexion.php" class="btn btn-danger">Déconnexion</a>
         </div>
     </div>
  </nav>
@@ -246,28 +246,32 @@ try {
                             <?php if (isset($trajet['etat'])): ?>
                                 <p><strong>État :</strong> <?php echo htmlspecialchars($trajet['etat']); ?></p>
                                 <!-- Boutons selon l'état -->
-                                <?php if ($trajet['etat'] === 'non démarré'): ?>
+                                 <?php if (isset($trajet['etat']) && $trajet['etat'] === 'non démarré'): ?>
                                     <form method="POST" class="mt-2">
                                         <input type="hidden" name="id_trajet" value="<?php echo $trajet['id_covoiturage']; ?>">
                                         <button type="submit" name="demarrer" class="btn btn-warning btn-sm">Démarrer le trajet</button>
                                     </form>
-                                <?php elseif ($trajet['etat'] === 'en cours'): ?>
                                     <form method="POST" class="mt-2">
                                         <input type="hidden" name="id_trajet" value="<?php echo $trajet['id_covoiturage']; ?>">
-                                        <button type="submit" name="terminer" class="btn btn-success btn-sm">Arrivée à destination</button>
+                                        <button type="submit" name="annuler_trajet" class="btn btn-danger btn-sm">Annuler ce trajet</button>
                                     </form>
-                                <?php endif; ?>
-                            <?php endif; ?>
-
-                            <!-- Bouton d'annulation -->
-                            <form method="POST" class="mt-2">
-                                <input type="hidden" name="id_trajet" value="<?php echo $trajet['id_covoiturage']; ?>">
-                                <button type="submit" name="annuler_trajet" class="btn btn-danger btn-sm">Annuler ce trajet</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
+                                    <?php elseif (isset($trajet['etat']) && $trajet['etat'] === 'en cours'): ?>
+                                        <form method="POST" class="mt-2">
+                                            <input type="hidden" name="id_trajet" value="<?php echo $trajet['id_covoiturage']; ?>">
+                                            <button type="submit" name="terminer" class="btn btn-success btn-sm">Arrivée à destination</button>
+                                        </form>
+                                        <form method="POST" class="mt-2">
+                                            <input type="hidden" name="id_trajet" value="<?php echo $trajet['id_covoiturage']; ?>">
+                                            <button type="submit" name="annuler_trajet" class="btn btn-danger btn-sm">Annuler le trajet (urgence)</button>
+                                        </form>
+                                        <?php elseif (isset($trajet['etat']) && $trajet['etat'] === 'terminé'): ?>
+                                            <p class="text-success"><strong>✅ Trajet terminé</strong></p>
+                                             <?php endif; ?>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php endforeach; ?>
         </div>
     <?php else: ?>
         <p class="text-muted">Aucun trajet créé pour l'instant.</p>

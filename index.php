@@ -23,19 +23,19 @@ session_start();
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/index.php">Accueil</a>
+                    <a class="nav-link" href="/index.php">Home 🏠</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/recherche.php">Covoiturages</a>
+                    <a class="nav-link" href="/recherche.php">Covoiturages 🚘</a>
                 </li>
                 
                 <?php if (isset($_SESSION['id_user'])) : ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="/mon-espace.php">Mon compte</a>
+                        <a class="nav-link" href="/mon-espace.php">Mon compte 👤</a>
                     </li>
                     <?php else : ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="/login.php">Connexion</a>
+                            <a class="nav-link" href="/login.php">Connexion 👤</a>
                         </li>
                         <?php endif; ?>
                     </ul>

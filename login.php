@@ -47,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         body {
             background-color: #f8f9fa;
             height: 100vh;
+            font-family: inherit;
         }
         .login-container {
             min-height: 100vh;

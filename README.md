@@ -1,131 +1,148 @@
-EcoRide 🌿 – Mise en place
-Préambule
-Ce projet fonctionne avec un environnement local de type XAMPP incluant Apache, PHP 8+, et MySQL.
-Aucun gestionnaire de paquets comme npm ou composer n'est requis.
+# EcoRide 🌿  
+**Projet ECF 2025** – Application de covoiturage éco-responsable
 
-📦 Dépendances
-Aucune dépendance externe à installer. Tous les scripts front-end utilisent Bootstrap, et les graphiques sont générés avec Chart.js via un CDN.
+## 🧠 Concept
 
-🗄️ Base de données & Authentification
+**EcoRide** est une plateforme web de covoiturage local, conçue pour encourager une mobilité durable et collaborative.  
+Les utilisateurs peuvent créer ou rejoindre des trajets en échange de crédits. Un système d’authentification avec rôles (utilisateur, employé, admin) gère les permissions et fonctionnalités disponibles.
 
-Placez le dossier /ecoride dans htdocs/ de XAMPP.
-Démarrez Apache et MySQL via le panneau de contrôle XAMPP.
-Dans phpMyAdmin, créez une base de données nommée ecoride.
-Importez le fichier SQL fourni (bdd/ecoride.sql).
-Ouvrez le fichier connexion.php et vérifiez la configuration suivante :
+---
 
-php$pdo = new PDO('mysql:host=localhost;dbname=ecoride', 'root', '');
+## 🧱 Stack technique
 
-L'authentification repose sur une gestion de rôles (utilisateur, employe, admin) via sessions PHP, avec stockage sécurisé des mots de passe grâce à password_hash().
+- **Backend** : PHP 8+ (sans framework)
+- **Base de données** : MySQL
+- **Frontend** : HTML, CSS, JavaScript (Bootstrap via CDN)
+- **Graphiques** : [Chart.js](https://www.chartjs.org/) via CDN
+- **Environnement** : Local via [XAMPP](https://www.apachefriends.org/index.html)
+- **Gestion des utilisateurs** : Sessions PHP & `password_hash()`
+- **Sécurité** :
+  - Requêtes préparées (PDO) pour éviter les injections SQL
+  - Protection XSS avec `htmlspecialchars()`
 
+---
 
-🎨 Maquettes et charte graphique
-Les maquettes de l'application se trouvent dans le dossier doc/maquettes/ :
+## ⚙️ Installation & Lancement
 
-Maquette.pdf contient :
+### Prérequis
 
-3 maquettes bureautiques (accueil, recherche, espace utilisateur)
-3 maquettes mobiles correspondantes
-La palette de couleurs et la typographie utilisées
+- [XAMPP](https://www.apachefriends.org/index.html) installé avec :
+  - Apache activé
+  - MySQL activé
+- PHP 8+
 
+### Étapes
 
+1. Cloner ou copier le dossier `/ecoride` dans le répertoire `htdocs/` de XAMPP.
+2. Démarrer **Apache** et **MySQL** via le panneau XAMPP.
+3. Accéder à [phpMyAdmin](http://localhost/phpmyadmin) :
+   - Créer une base de données nommée `ecoride`
+   - Importer le fichier SQL : `bdd/ecoride.sql`
+4. Vérifier la configuration de connexion dans `connexion.php` :
+   ```php
+   $pdo = new PDO('mysql:host=localhost;dbname=ecoride', 'root', '');
+   ```
+5. Lancer le projet :  
+   👉 [http://localhost/ecoride/](http://localhost/ecoride/)
 
-Charte graphique
-Palette de couleurs
+---
 
-Vert principal : #198754 (navbar, boutons, accents)
-Vert clair : #4caf50 (éléments secondaires, hover)
-Gris foncé : #212529 (texte principal)
-Gris moyen : #6c757d (texte secondaire)
-Gris clair : #f8f9fa (arrière-plans)
-Rouge : #dc3545 (alertes, annulations)
-Jaune : #ffc107 (avertissements, boutons secondaires)
+## 📦 Dépendances
 
-Typographie
+Aucune installation via npm ou composer requise. Tous les scripts sont chargés via CDN.
 
-Titres : Montserrat
+- [Bootstrap 5](https://getbootstrap.com/)
+- [Chart.js](https://www.chartjs.org/)
 
-H1 : Bold, 32px/2rem
-H2 : SemiBold, 24px/1.5rem
-H3 : Medium, 20px/1.25rem
+---
 
+## 🔐 Authentification
 
-Corps de texte : Roboto
+Système de rôles :
+- **Utilisateur** : créer/rejoindre un trajet
+- **Employé** : gestion de comptes
+- **Admin** : supervision globale
 
-Texte principal : Regular, 16px/1rem
-Texte secondaire : Light, 14px/0.875rem
+Sessions PHP sécurisées avec `password_hash()` pour le stockage des mots de passe.
 
+---
 
+## 📊 Fonctionnalités principales
 
+- Connexion / inscription sécurisée
+- Gestion des trajets (création, participation, annulation)
+- Système de **crédits** :
+  - +20 crédits à l'inscription
+  - -2 crédits pour chaque participation ou création
+  - Crédits remboursés si annulation
+- Tableau de bord administrateur :
+  - Suspension de comptes
+  - Statistiques (trajets par jour, crédits gagnés) via Chart.js
 
-🚀 Lancement
-Backend
+---
 
-Le backend s'exécute automatiquement dès qu'un fichier .php est accédé via le navigateur.
-Lancer le projet en visitant :
-http://localhost/ecoride/
+## 🎨 UI & Responsiveness
 
+- Design 100% responsive avec **Bootstrap**
+- Interface adaptée aux formats desktop, tablette et mobile
+- Maquettes disponibles dans `doc/maquettes/Maquette.pdf`
 
-Frontend
+### Typographie
 
-Le site utilise Bootstrap pour un rendu responsive.
-Aucun framework JS requis.
+- **Titres** : Montserrat  
+  - H1 : Bold, 32px  
+  - H2 : SemiBold, 24px  
+  - H3 : Medium, 20px  
+- **Texte** : Roboto  
+  - Texte principal : 16px  
+  - Texte secondaire : 14px  
 
+---
 
-🔐 Options de sécurité & debug
+## 🛠️ Débogage
 
-Prévention des injections SQL avec requêtes préparées (PDO).
-Protection XSS via htmlspecialchars().
-Vérification d'identité centralisée sur chaque page restreinte via le système auth_check.php.
-Pour le debug PHP :
-
-phpini_set('display_errors', 1);
+Activer les erreurs PHP pendant le développement :
+```php
+ini_set('display_errors', 1);
 error_reporting(E_ALL);
+```
 
-🔍 Fonctionnalités de l'administration
+---
 
-Création de comptes employés
-Suspension de comptes utilisateurs
-Affichage de graphiques via Chart.js
+## 🧪 Workflow Git recommandé
 
-Nombre de trajets par jour
-Crédits gagnés
+- Branche principale : `main`
+- Développement : `dev`
+- Fonctionnalités : `feature/<nom>`
 
+```bash
+git checkout -b feature/<nom>
+# après test
+git merge feature/<nom> -> dev
+# après validation finale
+git merge dev -> main
+```
 
+---
 
+## 📁 Structure utile
 
-💰 Système de crédits
+```
+/ecoride/
+│
+├── bdd/               # Fichier SQL
+├── doc/maquettes/     # Maquettes PDF
+├── includes/          # Fichiers partagés (auth_check.php, connexion.php, etc.)
+├── public/            # Pages accessibles
+├── admin/             # Espace d'administration
+├── assets/            # CSS / JS / images
+```
 
-Chaque utilisateur reçoit 20 crédits à l'inscription
-Participation à un trajet : coûte 2 crédits
-Création d'un trajet : coûte 2 crédits
-Les crédits sont remboursés en cas d'annulation
+---
 
+## 📚 Remarques
 
-📱 Compatibilité mobile
+Ce projet met l'accent sur une logique **100% native PHP**, sans frameworks.  
+Idéal pour comprendre les bases du web dynamique avec un MVC simplifié.
 
-Interface entièrement responsive grâce à Bootstrap
-Optimisée pour différentes tailles d'écran (desktop, tablette, mobile)
-Organisation adaptative des éléments sur petit écran
-
-
-📚 Remarques
-
-Le projet ne dépend d'aucun framework externe pour mettre en avant une logique 100% native PHP.
-Tous les scripts JS ou CSS sont chargés via CDN pour limiter la configuration.
-
-
-Bonnes pratiques Git utilisées
-
-Branche principale : main
-Branche de développement : dev
-Fonctionnalités développées sur des branches feature/<nom>, ex : feature/recherche
-
-Processus utilisé :
-
-Développement d'une fonctionnalité dans feature/...
-Merge vers dev après test
-Merge de dev vers main une fois l'application validée
-
-Ce workflow permet un développement structuré, évitant les conflits et facilitant la validation étape par étape.
-<small>EcoRide - Projet ECF 2025 🌱</small>
+---
