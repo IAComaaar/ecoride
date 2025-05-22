@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Inscription</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 <body>
 
@@ -80,6 +81,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <button type="submit" class="btn btn-success w-100">Créer mon compte</button>
     </form>
+    
+    <div class="mt-4 text-center">
+    <?php if (!empty($message) && strpos($message, 'existe déjà') !== false): ?>
+        <!-- Si l'email existe déjà, proposer d'aller à la connexion -->
+        <a href="login.php" class="btn btn-success">
+            <i class="bi bi-arrow-left"></i> Aller à la connexion
+        </a>
+    <?php else: ?>
+        <!-- Sinon, retour à l'accueil et lien vers connexion -->
+        <a href="index.php" class="btn btn-outline-secondary">
+            <i class="bi bi-house"></i> Retour à l'accueil
+        </a>
+        <a href="login.php" class="btn btn-outline-success ms-2">
+            <i class="bi bi-person"></i> Déjà un compte ?
+        </a>
+    <?php endif; ?>
+</div>
+
 </div>
 
 </body>
