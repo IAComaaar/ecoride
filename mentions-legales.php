@@ -54,6 +54,26 @@
                         Base de données : JawsDB (MySQL)<br>
                         Hébergement cloud sécurisé</p>
                         
+                        <h3 class="text-success mt-4">💰 Système de crédits EcoRide</h3>
+                        <div class="alert alert-light border-success">
+                            <h5 class="text-success">Nature et utilisation</h5>
+                            <p class="mb-2">Les crédits EcoRide constituent une monnaie virtuelle interne sans valeur monétaire réelle. Ils permettent aux passagers de participer aux covoiturages et aux chauffeurs d'être rémunérés pour leurs trajets.</p>
+                            
+                            <h6 class="text-success mt-3">Attribution et fonctionnement</h6>
+                            <ul class="mb-2">
+                                <li><strong>20 crédits gratuits</strong> attribués à la création de chaque compte</li>
+                                <li><strong>Passagers</strong> : débit de crédits lors de la participation à un trajet</li>
+                                <li><strong>Chauffeurs</strong> : crédit après validation satisfaisante du trajet par les passagers</li>
+                                <li><strong>Commission plateforme</strong> : 2 crédits prélevés automatiquement sur chaque transaction</li>
+                            </ul>
+                            
+                            <h6 class="text-success mt-3">Validation et sécurité</h6>
+                            <p class="mb-2">Le transfert de crédits vers le chauffeur s'effectue uniquement après confirmation de la réalisation du trajet par les passagers. En cas de problème signalé, un employé EcoRide intervient avant tout transfert.</p>
+                            
+                            <h6 class="text-success mt-3">Annulation et remboursement</h6>
+                            <p class="mb-0">En cas d'annulation d'un covoiturage, les crédits sont automatiquement remboursés aux participants concernés. Les crédits ne peuvent être convertis en monnaie réelle.</p>
+                        </div>
+                        
                         <h3 class="text-success mt-4">🔒 Données personnelles</h3>
                         <p>Les données personnelles collectées (nom, prénom, email) sont utilisées uniquement pour :</p>
                         <ul>
@@ -71,6 +91,9 @@
                         
                         <h3 class="text-success mt-4">🌱 Engagement écologique</h3>
                         <p>EcoRide s'engage à promouvoir une mobilité durable en favorisant le partage des trajets et en réduisant l'empreinte carbone des déplacements.</p>
+                        
+                        <h3 class="text-success mt-4">📋 Modification des conditions</h3>
+                        <p>EcoRide se réserve le droit de modifier ces conditions avec notification préalable par email et mise à jour des présentes mentions légales.</p>
                     </div>
                 </div>
                 

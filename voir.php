@@ -139,7 +139,7 @@ if (isset($_POST['participer']) && isset($_SESSION['id_user'])) {
                 <?php else: ?>
                     <!-- Utilisateur non connecté -->
                     <div class="mt-4">
-                        <a href="login.php?trajet_id=<?php echo $id; ?>" class="btn btn-success w-100">Se connecter pour participer</a>
+                    <a href="/login.php?redirect=<?= urlencode($_SERVER['REQUEST_URI']) ?>" class="btn btn-success">Se connecter pour participer</a>
                     </div>
                 <?php endif; ?>
 

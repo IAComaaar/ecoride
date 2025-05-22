@@ -32,8 +32,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['nom'] = $user['nom'];
         $_SESSION['prenom'] = $user['prenom'];
         $_SESSION['role'] = $user['role'];
-        
-        if (isset($_GET['trajet_id'])) {
+        // Gestion de la redirection
+        if (isset($_GET['redirect']) && !empty($_GET['redirect'])) {
+            $redirect_url = urldecode($_GET['redirect']);
+            // Sécurité : vérifier que c'est une URL interne
+            if (strpos($redirect_url, '/') === 0 && strpos($redirect_url, '//') === false) {
+                header('Location: ' . $redirect_url);
+            } else {
+                header('Location: mon-espace.php');
+            }
+        } elseif (isset($_GET['trajet_id'])) {
             $trajet_id = intval($_GET['trajet_id']);
             header('Location: voir.php?id=' . $trajet_id . '&connected=1');
         } else {
