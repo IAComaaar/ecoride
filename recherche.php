@@ -117,15 +117,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <div class="col-md-3">
         <label for="prix_max" class="form-label">Prix maximum (€)</label>
-        <input type="number" class="form-control" id="prix_max" name="prix_max" min="0" placeholder="Ex: 15" required>
+        <input type="number" class="form-control" id="prix_max" name="prix_max" min="0" placeholder="Ex: 15">
     </div>
     <div class="col-md-3">
         <label for="duree_max" class="form-label">Durée maximum (en minutes)</label>
-        <input type="number" class="form-control" id="duree_max" name="duree_max" min="1" placeholder="Ex: 120" required>
+        <input type="number" class="form-control" id="duree_max" name="duree_max" min="1" placeholder="Ex: 120">
     </div>
     <div class="col-md-3">
         <label for="note_min" class="form-label">Note minimale du chauffeur</label>
-        <input type="number" class="form-control" id="note_min" name="note_min" step="0.1" min="0" max="5" placeholder="Ex: 4,5" required>
+        <input type="number" class="form-control" id="note_min" name="note_min" step="0.1" min="0" max="5" placeholder="Ex: 4,5">
     </div>
 </div>
         <button type="submit" class="btn btn-success mt-4">Rechercher</button>
