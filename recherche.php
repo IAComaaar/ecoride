@@ -63,6 +63,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!-- Navbar -->
  <nav class="navbar navbar-expand-lg navbar-dark bg-success">
     <div class="container-fluid">
+    <a class="navbar-brand" href="index.php">EcoRide</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
@@ -113,15 +117,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <div class="col-md-3">
         <label for="prix_max" class="form-label">Prix maximum (€)</label>
-        <input type="number" class="form-control" id="prix_max" name="prix_max" min="0">
+        <input type="number" class="form-control" id="prix_max" name="prix_max" min="0" placeholder="Ex: 15" required>
     </div>
     <div class="col-md-3">
         <label for="duree_max" class="form-label">Durée maximum (en minutes)</label>
-        <input type="number" class="form-control" id="duree_max" name="duree_max" min="1">
+        <input type="number" class="form-control" id="duree_max" name="duree_max" min="1" placeholder="Ex: 120" required>
     </div>
     <div class="col-md-3">
         <label for="note_min" class="form-label">Note minimale du chauffeur</label>
-        <input type="number" class="form-control" id="note_min" name="note_min" step="0.1" min="0" max="5">
+        <input type="number" class="form-control" id="note_min" name="note_min" step="0.1" min="0" max="5" placeholder="Ex: 4,5" required>
     </div>
 </div>
         <button type="submit" class="btn btn-success mt-4">Rechercher</button>
