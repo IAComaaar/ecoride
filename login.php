@@ -35,11 +35,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         if (isset($_GET['trajet_id'])) {
             $trajet_id = intval($_GET['trajet_id']);
-            header('Location: reservation-success.php?trajet_id=' . $trajet_id);
+            header('Location: mon-espace.php?force_reservation=1&trajet_id=' . $trajet_id);
         } else {
             header('Location: mon-espace.php');
         }
         exit;
+    } else {
+        $error = "Email ou mot de passe incorrect";
     }
 }
 ?>

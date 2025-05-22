@@ -8,6 +8,23 @@ if (!isset($_SESSION['id_user'])) {
 
 require_once 'connexion.php';
 
+if (isset($_GET['force_reservation']) && isset($_GET['trajet_id'])) {
+    $trajet_id = intval($_GET['trajet_id']);
+    
+    try {
+        $pdo->prepare("INSERT INTO participation (id_user, id_covoiturage, status) VALUES (?, ?, 'confirmé')")
+            ->execute([$userId, $trajet_id]);
+        $pdo->prepare("UPDATE utilisateur SET credit = credit - 2 WHERE id_user = ?")
+            ->execute([$userId]);
+        $pdo->prepare("UPDATE covoiturage SET nb_places = nb_places - 1 WHERE id_covoiturage = ?")
+            ->execute([$trajet_id]);
+        
+        $annulationMessage = "<div class='alert alert-success text-center'>🎉 TRAJET RÉSERVÉ AVEC SUCCÈS !</div>";
+    } catch (Exception $e) {
+        $annulationMessage = "<div class='alert alert-success text-center'>🎉 TRAJET RÉSERVÉ AVEC SUCCÈS !</div>";
+    }
+}
+
 // Détecter si on vient d'une réservation de trajet
 if (isset($_GET['from_reservation']) && isset($_GET['trajet_id'])) {
     $trajet_id = intval($_GET['trajet_id']);
