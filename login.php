@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(to right, rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('/img/eco-road.jpg');
+            background: white;
             background-size: cover;
             background-position: center;
         }
@@ -112,9 +112,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8">
-                <div class="logo">
-                    EcoRide <span class="eco-badge">Écologique & Économique</span>
-                </div>
                 
                 <div class="login-card card">
                     <div class="login-header">
