@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $arrivee = htmlspecialchars($_POST['arrivee']);
     $date = $_POST['date'];
 
-    $sql = "SELECT c.*, v.energie,
+    $sql = "SELECT c.*, v.energie, u.note_moyenne,
     TIMESTAMPDIFF(MINUTE, c.heure_depart, c.heure_arrivee) AS duree
             FROM covoiturage c
             JOIN utilisateur u ON c.id_chauffeur = u.id_user
@@ -143,6 +143,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             📅 <strong>Date : </strong> <?php echo htmlspecialchars($trajet['date']); ?><br>
                             💰 <strong>Prix : </strong> <?php echo htmlspecialchars($trajet['prix']); ?> €<br>
                             🧍‍♂️ <strong>Places disponibles :</strong> <?php echo htmlspecialchars($trajet['nb_places']); ?>
+                            ⭐ <strong>Note chauffeur :</strong> 
+                            <?php if ($trajet['note_moyenne']): ?>
+                                <?php echo number_format($trajet['note_moyenne'], 1); ?>/5
+                            <?php else: ?> 
+                                Nouveau
+                            <?php endif; ?>
                             </p>
                             <p class="card-text">
                                 ⏱️ <strong>Durée estimée :</strong> <?php echo $trajet['duree']; ?> minutes

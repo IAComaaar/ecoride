@@ -11,7 +11,7 @@ if(!isset($_GET['id'])) {
 
 $id = intval($_GET['id']);
 
-$sql = "SELECT c.*, u.pseudo, u.email, v.marque, v.modele, v.energie
+$sql = "SELECT c.*, u.pseudo, u.email, u.note_moyenne, v.marque, v.modele, v.energie
         FROM covoiturage c
         JOIN utilisateur u ON c.id_chauffeur = u.id_user
         JOIN vehicule v ON c.id_vehicule = v.id_vehicule
@@ -20,12 +20,11 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute(['id' => $id]);
 $trajet = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if (isset($_POST['participer'])) {
-    if(!isset($_SESSION['id_user'])) {
-        // Rediriger vers login avec l'ID du trajet en paramètre URL
-        header('Location: login.php?redirect=trajet&id_trajet=' . $id);
-        exit;
-    } else {
+if(!isset($_SESSION['id_user'])) {
+    // Rediriger vers login avec l'URL complète pour revenir ici
+    header('Location: login.php?redirect=' . urlencode($_SERVER['REQUEST_URI']));
+    exit;
+} else {
         // L'utilisateur est connecté, continuer avec le traitement normal
         $userId = $_SESSION['id_user'];
 
@@ -60,7 +59,6 @@ if (isset($_POST['participer'])) {
             }
         }
     }
-}
 ?>
 
 <!DOCTYPE html>
@@ -71,13 +69,34 @@ if (isset($_POST['participer'])) {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
-        
-    <!-- Navbar -->
-     <nav class="navbar navbar-dark bg-sucess"
-        <div class="container-fluid">
-           <a class="navbar-brand" href="/index.php">EcoRide</a>
+        <!-- Navbar -->
+         <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/index.php">EcoRide</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/index.php">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/recherche.php">Covoiturages</a>
+                </li>
+                <?php if (isset($_SESSION['id_user'])): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/mon-espace.php">Mon compte</a>
+                    </li>
+                <?php else: ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login.php">Connexion</a>
+                    </li>
+                <?php endif; ?>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <div class="container mt-5">
     <h1 class="text-center mb-4">Détail du trajet</h1>
@@ -96,6 +115,18 @@ if (isset($_POST['participer'])) {
                 🚘 <strong>Véhicule :</strong> <?php echo htmlspecialchars($trajet['marque']) . ' ' . htmlspecialchars($trajet['modele']); ?><br>
                 ⚡ <strong>Énergie :</strong> <?php echo htmlspecialchars($trajet['energie']); ?><br>
                 👤 <strong>Chauffeur :</strong> <?php echo htmlspecialchars($trajet['pseudo']); ?><br>
+                ⭐ <strong>Note :</strong> 
+                <?php if ($trajet['note_moyenne']): ?>
+                    <?php echo number_format($trajet['note_moyenne'], 1); ?>/5 
+                    <?php 
+                    $stars = round($trajet['note_moyenne']);
+                    for($i = 1; $i <= 5; $i++) {
+                        echo $i <= $stars ? '⭐' : '☆';
+                    }
+                    ?>
+                    <?php else: ?>
+                        Nouveau chauffeur
+                        <?php endif; ?><br>
                 📧 <strong>Contact :</strong> <?php echo htmlspecialchars($trajet['email']); ?><br>
 
                 <?php if (strtolower($trajet['energie']) === 'électrique') : ?>
