@@ -2,15 +2,13 @@
 session_start();
 require_once 'connexion.php';
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 if(!isset($_GET['id'])) {
     die('Erreur : ID du covoiturage manquant.');
 }
 
 $id = intval($_GET['id']);
 
+// Récupérer les infos du trajet
 $sql = "SELECT c.*, u.pseudo, u.email, u.note_moyenne, v.marque, v.modele, v.energie
         FROM covoiturage c
         JOIN utilisateur u ON c.id_chauffeur = u.id_user
@@ -22,72 +20,36 @@ $trajet = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $message = "";
 
-// TRAITEMENT DU BOUTON PARTICIPER
+// BOUTON PARTICIPER
 if (isset($_POST['participer'])) {
     if(!isset($_SESSION['id_user'])) {
-        // Pas connecté - sauvegarder l'intention et rediriger
-        $_SESSION['trajet_a_reserver'] = $id;
-        session_write_close(); 
-        header('Location: login.php?trajet_id=' . $id);
+        // Pas connecté - aller sur la page de réservation directement
+        header('Location: reservation-success.php?trajet_id=' . $id);
+        exit;
     } else {
-        // Connecté - traiter la réservation immédiatement
+        // Connecté - réserver directement
         $userId = $_SESSION['id_user'];
         
-        // Vérifier les crédits
         $stmt = $pdo->prepare("SELECT credit FROM utilisateur WHERE id_user = ?");
         $stmt->execute([$userId]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $user = $stmt->fetch();
 
-        if ($user['credit'] < 2) {
-            $message = "<div class='alert alert-danger text-center'>Crédits insuffisants (2 crédits requis).</div>";
-        } elseif ($trajet['nb_places'] < 1) {
-            $message = "<div class='alert alert-danger text-center'>Plus aucune place disponible.</div>";
-        } else {
-            // Vérifier si déjà inscrit
+        if ($user['credit'] >= 2) {
             $stmt = $pdo->prepare("SELECT * FROM participation WHERE id_user = ? AND id_covoiturage = ?");
             $stmt->execute([$userId, $id]);
 
-            if ($stmt->rowCount() > 0) {
-                $message = "<div class='alert alert-info text-center'>Vous êtes déjà inscrit à ce trajet.</div>";
-            } else {
-                // EFFECTUER LA RÉSERVATION
-                $pdo->prepare("INSERT INTO participation (id_user, id_covoiturage, status)
-                VALUES (?, ?, 'confirmé')")->execute([$userId, $id]);
-
-                $pdo->prepare("UPDATE utilisateur SET credit = credit - 2 WHERE id_user = ?")->execute([$userId]);
-                $pdo->prepare("UPDATE covoiturage SET nb_places = nb_places - 1 WHERE id_covoiturage = ?")->execute([$id]);
-
-                $message = "<div class='alert alert-success text-center'>🎉 Réservation confirmée ! <a href='/mon-espace.php' class='btn btn-sm btn-success ms-2'>Voir mes réservations</a></div>";
+            if ($stmt->rowCount() == 0) {
+                $pdo->prepare("INSERT INTO participation (id_user, id_covoiturage, status) VALUES (?, ?, 'confirmé')")
+                    ->execute([$userId, $id]);
+                $pdo->prepare("UPDATE utilisateur SET credit = credit - 2 WHERE id_user = ?")
+                    ->execute([$userId]);
+                $pdo->prepare("UPDATE covoiturage SET nb_places = nb_places - 1 WHERE id_covoiturage = ?")
+                    ->execute([$id]);
+                
+                header('Location: reservation-success.php?trajet_id=' . $id);
+                exit;
             }
         }
-    }
-}
-
-// AUTO-RÉSERVATION APRÈS CONNEXION
-if (isset($_SESSION['id_user']) && isset($_SESSION['trajet_a_reserver']) && $_SESSION['trajet_a_reserver'] == $id) {
-    // L'utilisateur vient de se connecter et voulait réserver ce trajet
-    unset($_SESSION['trajet_a_reserver']);
-    
-    $userId = $_SESSION['id_user'];
-    $stmt = $pdo->prepare("SELECT credit FROM utilisateur WHERE id_user = ?");
-    $stmt->execute([$userId]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($user['credit'] >= 2 && $trajet['nb_places'] >= 1) {
-        $stmt = $pdo->prepare("SELECT * FROM participation WHERE id_user = ? AND id_covoiturage = ?");
-        $stmt->execute([$userId, $id]);
-
-        if ($stmt->rowCount() == 0) {
-            // EFFECTUER LA RÉSERVATION AUTOMATIQUE
-            $pdo->prepare("INSERT INTO participation (id_user, id_covoiturage, status)
-            VALUES (?, ?, 'confirmé')")->execute([$userId, $id]);
-            $pdo->prepare("UPDATE utilisateur SET credit = credit - 2 WHERE id_user = ?")->execute([$userId]);
-            $pdo->prepare("UPDATE covoiturage SET nb_places = nb_places - 1 WHERE id_covoiturage = ?")->execute([$id]);
-            
-            $message = "<div class='alert alert-success text-center'>🎉 Réservation automatique réussie ! <a href='/mon-espace.php' class='btn btn-sm btn-success ms-2'>Voir mes réservations</a></div>";
-        }
-    } else {
-        $message = "<div class='alert alert-warning text-center'>Impossible de réserver : crédits insuffisants ou plus de places.</div>";
     }
 }
 ?>

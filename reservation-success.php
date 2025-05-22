@@ -3,7 +3,7 @@ session_start();
 require_once 'connexion.php';
 
 if (!isset($_SESSION['id_user'])) {
-    header('Location: login.php');
+    header('Location: login.php?trajet_id=' . $_GET['trajet_id']);
     exit;
 }
 
