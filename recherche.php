@@ -142,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <p class="card-text mt-2">
                             📅 <strong>Date : </strong> <?php echo htmlspecialchars($trajet['date']); ?><br>
                             💰 <strong>Prix : </strong> <?php echo htmlspecialchars($trajet['prix']); ?> €<br>
-                            🧍‍♂️ <strong>Places disponibles :</strong> <?php echo htmlspecialchars($trajet['nb_places']); ?>
+                            🧍‍♂️ <strong>Places disponibles :</strong> <?php echo htmlspecialchars($trajet['nb_places']); ?><br>
                             ⭐ <strong>Note chauffeur :</strong> 
                             <?php if ($trajet['note_moyenne']): ?>
                                 <?php echo number_format($trajet['note_moyenne'], 1); ?>/5
