@@ -142,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         
                         <div class="text-center mt-3">
                             <p class="mb-0">Pas encore de compte ?</p>
-                            <a href="/register.php" class="btn btn-outline-success">
+                            <a href="/inscription.php" class="btn btn-outline-success">
                                 <i class="fas fa-user-plus"></i> Créer un compte
                             </a>
                         </div>
