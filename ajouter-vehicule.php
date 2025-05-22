@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Insertion en base
     $stmt = $pdo->prepare("INSERT INTO vehicule 
-        (id_user, marque, modele, couleur, immatriculation, energie)
+        (id_proprietaire, marque, modele, couleur, immatriculation, energie)
         VALUES (?, ?, ?, ?, ?, ?)");
 
     $stmt->execute([
