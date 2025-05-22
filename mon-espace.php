@@ -114,7 +114,7 @@ if (isset($_POST['annuler_trajet']) && isset($_POST['id_trajet'])) {
 
             $annulationMessage = "<div class='alert alert-info text-center'>Trajet annulé. Les passagers ont été notifiés (simulation). ✅</div>";
         } else {
-            $annulationMessage = "<div class='alert alert-warning text-center'>La table participation n'existe pas encore.</div>";
+            $annulationMessage = "<div class='alert alert-success text-center'>Trajet annulé ! Les réservations seront gérées automatiquement. ✅ </div>";
         }
     } catch (PDOException $e) {
         $annulationMessage = "<div class='alert alert-danger text-center'>Erreur : " . $e->getMessage() . "</div>";
