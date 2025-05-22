@@ -28,8 +28,7 @@ if (isset($_POST['participer'])) {
         // Pas connecté - sauvegarder l'intention et rediriger
         $_SESSION['trajet_a_reserver'] = $id;
         session_write_close(); 
-        header('Location: login.php?redirect=' . urlencode($_SERVER['REQUEST_URI']));
-        exit;
+        header('Location: login.php?trajet_id=' . $id);
     } else {
         // Connecté - traiter la réservation immédiatement
         $userId = $_SESSION['id_user'];
