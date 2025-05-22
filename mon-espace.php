@@ -8,6 +8,42 @@ if (!isset($_SESSION['id_user'])) {
 
 require_once 'connexion.php';
 
+// Détecter si on vient d'une réservation de trajet
+if (isset($_GET['from_reservation']) && isset($_GET['trajet_id'])) {
+    $trajet_id = intval($_GET['trajet_id']);
+    
+    try {
+        // Vérifier les crédits
+        $stmt = $pdo->prepare("SELECT credit FROM utilisateur WHERE id_user = ?");
+        $stmt->execute([$userId]);
+        $user_credits = $stmt->fetch();
+        
+        if ($user_credits['credit'] >= 2) {
+            // Vérifier si pas déjà inscrit
+            $stmt = $pdo->prepare("SELECT * FROM participation WHERE id_user = ? AND id_covoiturage = ?");
+            $stmt->execute([$userId, $trajet_id]);
+            
+            if ($stmt->rowCount() == 0) {
+                // FAIRE LA RÉSERVATION
+                $pdo->prepare("INSERT INTO participation (id_user, id_covoiturage, status) VALUES (?, ?, 'confirmé')")
+                    ->execute([$userId, $trajet_id]);
+                $pdo->prepare("UPDATE utilisateur SET credit = credit - 2 WHERE id_user = ?")
+                    ->execute([$userId]);
+                $pdo->prepare("UPDATE covoiturage SET nb_places = nb_places - 1 WHERE id_covoiturage = ?")
+                    ->execute([$trajet_id]);
+                
+                $annulationMessage = "<div class='alert alert-success text-center'>🎉 Trajet réservé avec succès ! Votre réservation apparaît ci-dessous.</div>";
+            } else {
+                $annulationMessage = "<div class='alert alert-info text-center'>Vous étiez déjà inscrit à ce trajet.</div>";
+            }
+        } else {
+            $annulationMessage = "<div class='alert alert-danger text-center'>Crédits insuffisants pour la réservation.</div>";
+        }
+    } catch (Exception $e) {
+        $annulationMessage = "<div class='alert alert-danger text-center'>Erreur lors de la réservation.</div>";
+    }
+}
+
 // Récupérer l'ID utilisateur de la session
 $userId = $_SESSION['id_user'];
 

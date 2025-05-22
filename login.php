@@ -34,17 +34,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['role'] = $user['role'];
         
 // Redirection intelligente
-if (isset($_GET['redirect']) && !empty($_GET['redirect'])) {
-    $redirect_url = urldecode($_GET['redirect']);
-    header('Location: ' . $redirect_url);
+if (isset($_GET['redirect']) && strpos($_GET['redirect'], 'voir.php?id=') !== false) {
+    // Extraire l'ID du trajet
+    preg_match('/voir\.php\?id=(\d+)/', $_GET['redirect'], $matches);
+    if (isset($matches[1])) {
+        $trajet_id = $matches[1];
+        header('Location: mon-espace.php?from_reservation=1&trajet_id=' . $trajet_id);
+    } else {
+        header('Location: mon-espace.php');
+    }
 } else {
     header('Location: mon-espace.php');
+}
 }
 exit;
     } else {
         $error = "Email ou mot de passe incorrect";
     }
-}
 ?>
 
 <!DOCTYPE html>
