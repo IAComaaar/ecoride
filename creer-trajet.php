@@ -68,19 +68,19 @@ $message = ""; //Afin d'afficher plus tard
 </head>
 <body>
 
-<nav class="navbar navbar-dark bg-success">
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
     <div class="container-fluid">
         <a class="navbar-brand" href="/index.php">EcoRide</a>
-        <ul class="navbar-nav ms-auto flex-row gap-3">
-        <?php
-        $current_page = basename($_SERVER['PHP_SELF']);
-        $pages_avec_mon_compte = ['ajouter-vehicule.php', 'creer-trajet.php'];
-        if (in_array($current_page, $pages_avec_mon_compte)) {
-            echo '<li class="nav-item">
-              <a class="nav-link" href="/ecoride/mon-espace.php">Mon compte</a>
-          </li>';}
-          ?>
-          </ul>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/mon-espace.php">Mon compte</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 

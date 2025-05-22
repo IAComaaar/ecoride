@@ -168,14 +168,19 @@ try {
 <body>
     
 <!-- Navbar -->
- <nav class="navbar navbar-dark bg-success">
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
     <div class="container-fluid">
         <a class="navbar-brand" href="/index.php">EcoRide</a>
-        <div class="text-end mb-3">
-            <a href="/deconnexion.php" class="btn btn-danger">Déconnexion</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav ms-auto">
+                <a href="/deconnexion.php" class="btn btn-outline-light btn-sm">Déconnexion</a>
+            </div>
         </div>
     </div>
- </nav>
+</nav>
 
  <div class="container mt-5">
     <?php if (!empty($annulationMessage)) echo $annulationMessage; ?>
