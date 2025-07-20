@@ -1,15 +1,10 @@
--- =============================================
--- Base de données EcoRide - ECF 2025
--- Création et intégration des données
--- =============================================
 
+-- SCRIPT
 -- Création de la base de données
 CREATE DATABASE IF NOT EXISTS ecoride;
 USE ecoride;
 
--- =============================================
 -- CRÉATION DES TABLES
--- =============================================
 
 -- Table utilisateur
 CREATE TABLE IF NOT EXISTS utilisateur (
@@ -94,9 +89,7 @@ CREATE TABLE IF NOT EXISTS avis (
     FOREIGN KEY (id_chauffeur) REFERENCES utilisateur(id_user) ON DELETE CASCADE
 );
 
--- =============================================
 -- INSERTION DES DONNÉES DE TEST
--- =============================================
 
 -- Utilisateurs de test
 INSERT INTO utilisateur (nom, prenom, pseudo, email, mot_de_passe, role, credit) VALUES
@@ -145,9 +138,7 @@ INSERT INTO avis (id_user, id_covoiturage, id_chauffeur, note, commentaire, vali
 (6, 1, 4, 5, 'Super expérience, je recommande !', 1),
 (3, 4, 4, 3, 'Trajet correct mais un peu de retard au départ.', 0);
 
--- =============================================
 -- INDEX POUR OPTIMISATION
--- =============================================
 
 -- Index pour améliorer les performances de recherche
 CREATE INDEX idx_covoiturage_date ON covoiturage(date);
@@ -157,9 +148,7 @@ CREATE INDEX idx_participation_covoiturage ON participation(id_covoiturage);
 CREATE INDEX idx_vehicule_proprietaire ON vehicule(id_proprietaire);
 CREATE INDEX idx_avis_chauffeur ON avis(id_chauffeur);
 
--- =============================================
 -- VUES UTILES
--- =============================================
 
 -- Vue des trajets avec détails du chauffeur et du véhicule
 CREATE VIEW vue_trajets_complets AS
@@ -194,9 +183,7 @@ FROM covoiturage
 GROUP BY DATE(date_creation)
 ORDER BY jour DESC;
 
--- =============================================
 -- FONCTIONS/PROCÉDURES UTILES
--- =============================================
 
 -- Procédure pour calculer la note moyenne d'un chauffeur
 DELIMITER //
@@ -213,25 +200,3 @@ BEGIN
     WHERE id_user = chauffeur_id;
 END//
 DELIMITER ;
-
--- =============================================
--- DONNÉES COMPLÈTES - RÉCAPITULATIF
--- =============================================
-
-/*
-COMPTES DE TEST CRÉÉS :
-- Admin: admin@ecoride.fr / admin123
-- Employé: employe@ecoride.fr / employe123  
-- Utilisateur: user@ecoride.fr / user123
-
-DONNÉES DISPONIBLES :
-- 6 utilisateurs
-- 5 véhicules (incluant électriques)
-- 7 trajets planifiés
-- 4 participations
-- 3 préférences
-- 4 avis (dont 1 en attente de validation)
-
-Note: Tous les mots de passe sont hashés avec password_hash() 
-et correspondent à : admin123, employe123, user123
-*/
