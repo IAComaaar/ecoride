@@ -1,11 +1,28 @@
+# Activer la réécriture d'URL
 RewriteEngine On
-RewriteBase /
+RewriteBase /ecoride/
 
-# Rediriger les chemins /ecoride/fichier.php vers /fichier.php
-RewriteCond %{REQUEST_URI} ^/ecoride/(.*)$
-RewriteRule ^ecoride/(.*)$ /$1 [L,R=301]
-
-# Si le fichier ou répertoire existe, l'utiliser
+# Si le fichier ou répertoire existe, l'utiliser directement
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
+
+# Protection : empêcher l'accès direct aux fichiers sensibles
+<FilesMatch "\.(env|sql|md|gitignore)$">
+    Require all denied
+</FilesMatch>
+
+# Headers de sécurité
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# PHP settings
+<IfModule mod_php.c>
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    php_value max_execution_time 300
+    php_value max_input_time 300
+</IfModule>
