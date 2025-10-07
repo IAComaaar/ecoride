@@ -1,0 +1,12 @@
+# Base de données EcoRide
+
+## Import local
+
+### Via phpMyAdmin
+1. Créer la base : `CREATE DATABASE ecoride;`
+2. Importer : `database/sql/ecoride.sql`
+
+### Via ligne de commande
+```bash
+mysql -u root ecoride < database/sql/ecoride.sql
+
