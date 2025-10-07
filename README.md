@@ -1,173 +1,174 @@
-# EcoRide 🌿
+# 🌿 EcoRide - Plateforme de Covoiturage Écologique
 
-**Projet ECF 2025** – Application de covoiturage éco-responsable
+**ECF DWWM 2025** - Projet de validation du titre professionnel Développeur Web et Web Mobile
 
-## 🧠 Concept
-
-**EcoRide** est une plateforme web de covoiturage local, conçue pour encourager une mobilité durable et collaborative. 
-
-Les utilisateurs peuvent créer ou rejoindre des trajets en échange de crédits. Un système d'authentification avec rôles (utilisateur, employé, admin) gère les permissions et fonctionnalités disponibles.
+[![PHP](https://img.shields.io/badge/PHP-8.2-777BB4?logo=php)](https://www.php.net/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-7.0-47A248?logo=mongodb)](https://www.mongodb.com/)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?logo=bootstrap)](https://getbootstrap.com/)
 
 ---
 
-## 🧱 Stack technique
+## 📋 Présentation
 
-- **Backend** : PHP 8+ (sans framework)
-- **Base de données** : MySQL (local) / JawsDB MySQL (production)
-- **Frontend** : HTML, CSS, JavaScript (Bootstrap via CDN)
-- **Graphiques** : [Chart.js](https://www.chartjs.org/) via CDN
-- **Environnement** : Local via [XAMPP](https://www.apachefriends.org/index.html)
-- **Déploiement** : [Heroku](https://heroku.com) + JawsDB
-- **Gestion des utilisateurs** : Sessions PHP & `password_hash()`
-- **Sécurité** :
-  - Requêtes préparées (PDO) pour éviter les injections SQL
-  - Protection XSS avec `htmlspecialchars()`
+EcoRide est une plateforme de covoiturage axée sur l'écologie, permettant de :
+- 🚗 Proposer des trajets en voiture (chauffeurs)
+- 🧍 Réserver des places (passagers)
+- 🌱 Filtrer les trajets écologiques (véhicules électriques)
+- 💰 Gérer un système de crédits
+- ⭐ Laisser des avis modérés
+
+**Objectif :** Réduire l'empreinte carbone des déplacements.
 
 ---
 
-## ⚙️ Installation & Lancement
+## ✨ Fonctionnalités (13 User Stories)
+
+### Front-end (Activité Type 1)
+
+| US | Description | Statut |
+|----|-------------|--------|
+| US1 | Page d'accueil avec recherche | ✅ |
+| US2 | Menu navigation | ✅ |
+| US3 | Vue des covoiturages | ✅ |
+| US4 | Filtres avancés | ✅ |
+| US5 | Vue détaillée trajet | ✅ |
+| US6 | Participation avec double confirmation | ✅ |
+| US7 | Création de compte | ✅ |
+
+### Back-end (Activité Type 2)
+
+| US | Description | Statut |
+|----|-------------|--------|
+| US8 | Espace utilisateur (passager/chauffeur) | ✅ |
+| US9 | Création de trajets | ✅ |
+| US10 | Historique + annulation | ✅ |
+| US11 | Workflow complet (démarrer → terminer → validation) | ✅ |
+| US12 | Espace employé (modération + signalements) | ✅ |
+| US13 | Dashboard admin (stats + suspension) | ✅ |
+
+---
+
+## 🛠️ Stack technique
+
+### Backend
+- **PHP 8.2** natif
+- **PDO** pour MySQL
+- **MongoDB PHP Library** pour NoSQL
+
+### Frontend
+- **HTML5 / CSS3**
+- **Bootstrap 5.3**
+- **JavaScript vanilla**
+
+### Bases de données
+- **MySQL / MariaDB** (données relationnelles)
+- **MongoDB** (logs recherche, avis temporaires)
+
+### Outils
+- **Git / GitHub**
+- **Composer**
+- **XAMPP**
+
+---
+
+## 📦 Installation locale
 
 ### Prérequis
-- [XAMPP](https://www.apachefriends.org/index.html) installé avec :
-  - Apache activé
-  - MySQL activé
-- PHP 8+
+- XAMPP (Apache + MySQL)
+- MongoDB Community Server
+- Composer
+- Git
 
-### Étapes (Local)
-1. Cloner ou copier le dossier `/ecoride` dans le répertoire `htdocs/` de XAMPP.
-2. Démarrer **Apache** et **MySQL** via le panneau XAMPP.
-3. Accéder à [phpMyAdmin](http://localhost/phpmyadmin) :
-   - Créer une base de données nommée `ecoride`
-   - Importer le fichier SQL : `bdd/ecoride.sql`
-4. Vérifier la configuration de connexion dans `connexion.php` :
-   ```php
-   $pdo = new PDO('mysql:host=localhost;dbname=ecoride', 'root', '');
-   ```
-5. Lancer le projet :
-   
-   👉 [http://localhost/ecoride/](http://localhost/ecoride/)
-
-### Déploiement Heroku
-1. **Configuration Heroku**
-   ```bash
-   # Créer l'application
-   heroku create ecoride-app
-   
-   # Ajouter JawsDB MySQL
-   heroku addons:create jawsdb:kitefin
-   ```
-
-2. **Fichiers requis**
-   - `composer.json` : `{}`
-   - `Procfile` : `web: vendor/bin/heroku-php-apache2`
-
-3. **Déployer**
-   ```bash
-   git push heroku main
-   ```
-
-**🔗 Application déployée :** [https://ecoride-app.herokuapp.com](https://ecoride-app.herokuapp.com)
-
----
-
-## 📦 Dépendances
-
-Aucune installation via npm ou composer requise. Tous les scripts sont chargés via CDN.
-
-- [Bootstrap 5](https://getbootstrap.com/)
-- [Chart.js](https://www.chartjs.org/)
-
----
-
-## 🔐 Authentification
-
-Système de rôles :
-- **Utilisateur** : créer/rejoindre un trajet
-- **Employé** : gestion de comptes
-- **Admin** : supervision globale
-
-Sessions PHP sécurisées avec `password_hash()` pour le stockage des mots de passe.
-
----
-
-## 📊 Fonctionnalités principales
-
-- Connexion / inscription sécurisée
-- Gestion des trajets (création, participation, annulation)
-- Système de **crédits** :
-  - +20 crédits à l'inscription
-  - -2 crédits pour chaque participation ou création
-  - Crédits remboursés si annulation
-- Tableau de bord administrateur :
-  - Suspension de comptes
-  - Statistiques (trajets par jour, crédits gagnés) via Chart.js
-
----
-
-## 🎨 UI & Responsiveness
-
-- Design 100% responsive avec **Bootstrap**
-- Interface adaptée aux formats desktop, tablette et mobile
-- Maquettes disponibles dans `doc/maquettes/Maquette.pdf`
-
-### Typographie
-- **Titres** : Montserrat
-  - H1 : Bold, 32px
-  - H2 : SemiBold, 24px
-  - H3 : Medium, 20px
-- **Texte** : Roboto
-  - Texte principal : 16px
-  - Texte secondaire : 14px
-
----
-
-## 🛠️ Débogage
-
-Activer les erreurs PHP pendant le développement :
-```php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-```
-
----
-
-## 🧪 Workflow Git recommandé
-
-- Branche principale : `main`
-- Développement : `dev`
-- Fonctionnalités : `feature/<nom>`
-
+### Installation
 ```bash
-git checkout -b feature/<nom>
-# après test
-git merge feature/<nom> -> dev
-# après validation finale
-git merge dev -> main
-```
+# 1. Cloner le repository
+git clone https://github.com/IAComaaar/ecoride.git
+cd ecoride
 
----
+# 2. Installer les dépendances
+composer install
 
-## 📁 Structure utile
+# 3. Créer la base MySQL
+# Dans phpMyAdmin : créer 'ecoride'
+# Puis importer : database/sql/ecoride.sql
 
-```
-/ecoride/
-│
-├── bdd/               # Fichier SQL
-├── doc/maquettes/     # Maquettes PDF
-├── includes/          # Fichiers partagés (auth_check.php, connexion.php, etc.)
-├── public/            # Pages accessibles
-├── admin/             # Espace d'administration
-├── assets/            # CSS / JS / images
-├── composer.json      # Configuration Heroku
-├── Procfile          # Configuration serveur Heroku
-```
+# 4. Configurer MongoDB
+mongod  # Démarrer MongoDB
+mongosh
+use ecoride
+db.createCollection("search_logs")
+db.createCollection("pending_reviews")
 
----
+# 5. Lancer l'application
+# Démarrer Apache et MySQL via XAMPP
+open http://localhost/ecoride/
+🏗️ Architecture
+Structure des fichiers
+ecoride/
+├── config/
+│   ├── database.php       # Connexion MySQL
+│   └── mongodb.php        # Connexion MongoDB
+├── models/
+│   ├── SearchLog.php      # Logs recherche (NoSQL)
+│   └── PendingReview.php  # Avis temporaires (NoSQL)
+├── database/
+│   ├── README.md
+│   └── sql/
+│       └── ecoride.sql    # Export base MySQL
+├── .gitignore
+├── composer.json
+└── README.md
+Base de données SQL (7 tables)
+utilisateur
+├── vehicule
+├── preferences
+└── covoiturage (+ colonne 'etat')
+    ├── participation (+ colonne 'date_validation')
+    ├── avis
+    └── signalements
+Collections MongoDB
+search_logs : Historique recherches
+javascript{
+  user_id: Number,
+  search_params: {depart, arrivee, date},
+  results_count: Number,
+  timestamp: ISODate
+}
+pending_reviews : Avis en attente validation
+javascript{
+  covoiturage_id: Number,
+  user_id: Number,
+  note: Number,
+  status: "pending|approved|rejected"
+}
 
-## 📚 Remarques
+👤 Comptes de test
+RôleEmailMot de passeAdminadmin@ecoride.frpasswordEmployéemploye@ecoride.frpasswordUtilisateurtest@test.frpassword
 
-Ce projet met l'accent sur une logique **100% native PHP**, sans frameworks. 
+🔒 Sécurité
+✅ Hachage bcrypt des mots de passe
+✅ Requêtes préparées PDO (protection SQL injection)
+✅ htmlspecialchars() sur toutes sorties (protection XSS)
+✅ Tokens CSRF sur formulaires critiques
+✅ Double confirmation actions importantes
+✅ Logs d'erreur côté serveur uniquement
 
-Idéal pour comprendre les bases du web dynamique avec un MVC simplifié.
+🚀 Déploiement
+Variables d'environnement
+bash# MySQL (ex: JawsDB Heroku)
+JAWSDB_COBALT_URL=mysql://user:pass@host/db
 
----
+# MongoDB (ex: MongoDB Atlas)
+MONGODB_URI=mongodb+srv://user:pass@cluster/ecoride
+Heroku
+bashheroku create ecoride-prod
+heroku addons:create jawsdb:kitefin
+git push heroku main
+
+👨‍💻 Auteur
+Marco - Candidat DWWM 2025
+📧 Email: mtnunes.pro@gmail.com
+🔗 GitHub: https://github.com/IAComaaar
+
+📝 Licence
+Projet EcoRide © 2025
