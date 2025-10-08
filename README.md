@@ -143,7 +143,10 @@ javascript{
 }
 
 👤 Comptes de test
-RôleEmailMot de passeAdminadmin@ecoride.frpasswordEmployéemploye@ecoride.frpasswordUtilisateurtest@test.frpassword
+Rôle                Email                 Mot de passe
+Admin               admin@ecoride.fr      password
+Employé             employe@ecoride.fr    password
+Utilisateur         test@test.fr          password
 
 🔒 Sécurité
 ✅ Hachage bcrypt des mots de passe
