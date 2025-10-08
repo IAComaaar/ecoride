@@ -1,6 +1,6 @@
 <?php
 use MongoDB\BSON\UTCDateTime;
-use MongoDB\BSON\ObjectfId;
+use MongoDB\BSON\ObjectId;
 
 class SearchLog {
     private $collection;
@@ -22,7 +22,7 @@ class SearchLog {
                     'filters' => $searchParams['filters'] ?? []
                 ],
                 'results_count' => (int)$resultsCount,
-                'timestamp' => new MongoDB\BSON\UTCDateTime(),
+                'timestamp' => new UTCDateTime(),
                 'ip_address' => $_SERVER['REMOTE_ADDR'] ?? 'unknown'
             ]);
             return true;

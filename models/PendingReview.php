@@ -18,7 +18,7 @@ class PendingReview {
                 'note' => (int)$note,
                 'commentaire' => $commentaire,
                 'status' => 'pending',
-                'created_at' => new MongoDB\BSON\UTCDateTime(),
+                'created_at' => new UTCDateTime(),
                 'validated_at' => null,
                 'validated_by' => null
             ]);
@@ -47,11 +47,11 @@ class PendingReview {
     public function approveReview($reviewId, $employeId) {
         try {
             $this->collection->updateOne(
-                ['_id' => new MongoDB\BSON\ObjectId($reviewId)],
+                ['_id' => new ObjectId($reviewId)],
                 [
                     '$set' => [
                         'status' => 'approved',
-                        'validated_at' => new MongoDB\BSON\UTCDateTime(),
+                        'validated_at' => new UTCDateTime(),
                         'validated_by' => (int)$employeId
                     ]
                 ]
@@ -67,11 +67,11 @@ class PendingReview {
     public function rejectReview($reviewId, $employeId, $reason = '') {
         try {
             $this->collection->updateOne(
-                ['_id' => new MongoDB\BSON\ObjectId($reviewId)],
+                ['_id' => new ObjectId($reviewId)],
                 [
                     '$set' => [
                         'status' => 'rejected',
-                        'validated_at' => new MongoDB\BSON\UTCDateTime(),
+                        'validated_at' => new UTCDateTime(),
                         'validated_by' => (int)$employeId,
                         'rejection_reason' => $reason
                     ]
