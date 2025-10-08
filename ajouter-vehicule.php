@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <ul class="navbar-nav ms-auto flex-row gap-3">
         <?php
         $current_page = basename($_SERVER['PHP_SELF']);
-        $pages_avec_mon_compte = ['ajouter-vehicule.php', 'proposer-trajet.php'];
+        $pages_avec_mon_compte = ['ajouter-vehicule.php', 'creer-trajet.php'];
         if (in_array($current_page, $pages_avec_mon_compte)) {
             echo '<li class="nav-item">
               <a class="nav-link" href="/ecoride/mon-espace.php">Mon compte</a>
