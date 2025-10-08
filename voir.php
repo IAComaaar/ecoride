@@ -63,25 +63,25 @@ if (isset($_POST['participer']) && isset($_SESSION['id_user'])) {
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-success">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/index.php">EcoRide</a>
+            <a class="navbar-brand" href="/ecoride/index.php">EcoRide</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/index.php">Accueil</a>
+                        <a class="nav-link" href="/ecoride/index.php">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/recherche.php">Covoiturages</a>
+                        <a class="nav-link" href="/ecoride/recherche.php">Covoiturages</a>
                     </li>
                     <?php if (isset($_SESSION['id_user'])): ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="/mon-espace.php">Mon compte</a>
+                            <a class="nav-link" href="/ecoride/mon-espace.php">Mon compte</a>
                         </li>
                     <?php else: ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="/login.php">Connexion</a>
+                            <a class="nav-link" href="/ecoride/login.php">Connexion</a>
                         </li>
                     <?php endif; ?>
                 </ul>
@@ -139,12 +139,12 @@ if (isset($_POST['participer']) && isset($_SESSION['id_user'])) {
                 <?php else: ?>
                     <!-- Utilisateur non connecté -->
                     <div class="mt-4">
-                    <a href="/login.php?redirect=<?= urlencode($_SERVER['REQUEST_URI']) ?>" class="btn btn-success">Se connecter pour participer</a>
+                    <a href="/ecoride/login.php?redirect=<?= urlencode($_SERVER['REQUEST_URI']) ?>" class="btn btn-success">Se connecter pour participer</a>
                     </div>
                 <?php endif; ?>
 
                 <div class="text-center mt-3">
-                    <a href="/recherche.php" class="btn btn-outline-secondary">⬅ Retour à la recherche</a>
+                    <a href="/ecoride/recherche.php" class="btn btn-outline-secondary">⬅ Retour à la recherche</a>
                 </div>
             </div>
         </div>

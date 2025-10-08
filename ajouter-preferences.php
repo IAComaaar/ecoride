@@ -54,14 +54,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-success">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/index.php">EcoRide</a>
+        <a class="navbar-brand" href="/ecoride/index.php">EcoRide</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/mon-espace.php">Mon compte</a>
+                    <a class="nav-link" href="/ecoride/mon-espace.php">Mon compte</a>
                 </li>
             </ul>
         </div>
@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <button type="submit" class="btn btn-success w-100">Enregistrer mes préférences</button>
         <div class="mt-4 text-center">
-            <a href="/mon-espace.php" class="btn btn-outline-secondary">
+            <a href="/ecoride/mon-espace.php" class="btn btn-outline-secondary">
                 <i class="bi bi-arrow-left"></i> Retour à mon espace
             </a>
         </div>

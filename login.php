@@ -77,20 +77,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-success">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/index.php">EcoRide</a>
+            <a class="navbar-brand" href="/ecoride/index.php">EcoRide</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/index.php">Accueil</a>
+                        <a class="nav-link" href="/ecoride/index.php">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/recherche.php">Covoiturages</a>
+                        <a class="nav-link" href="/ecoride/recherche.php">Covoiturages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="/login.php">Connexion</a>
+                        <a class="nav-link active" href="/ecoride/login.php">Connexion</a>
                     </li>
                 </ul>
             </div>
@@ -142,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         
                         <div class="text-center mt-3">
                             <p class="mb-0">Pas encore de compte ?</p>
-                            <a href="/inscription.php" class="btn btn-outline-success">
+                            <a href="/ecoride/inscription.php" class="btn btn-outline-success">
                                 <i class="fas fa-user-plus"></i> Créer un compte
                             </a>
                         </div>

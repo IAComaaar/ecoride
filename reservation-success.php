@@ -65,7 +65,7 @@ $trajet = $stmt->fetch();
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-success">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/index.php">EcoRide</a>
+            <a class="navbar-brand" href="/ecoride/index.php">EcoRide</a>
         </div>
     </nav>
 
@@ -98,8 +98,8 @@ $trajet = $stmt->fetch();
                 <?php endif; ?>
                 
                 <div class="text-center mt-4">
-                    <a href="/mon-espace.php" class="btn btn-success btn-lg">Voir mes réservations</a>
-                    <a href="/recherche.php" class="btn btn-outline-secondary btn-lg ms-2">Nouveau trajet</a>
+                    <a href="/ecoride/mon-espace.php" class="btn btn-success btn-lg">Voir mes réservations</a>
+                    <a href="/ecoride/recherche.php" class="btn btn-outline-secondary btn-lg ms-2">Nouveau trajet</a>
                 </div>
             </div>
         </div>

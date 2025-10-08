@@ -235,7 +235,7 @@ try {
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-success">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/index.php">EcoRide</a>
+        <a class="navbar-brand" href="/ecoride/index.php">EcoRide</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -243,13 +243,13 @@ try {
             <ul class="navbar-nav ms-auto">
                 <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
                     <li class="nav-item">
-                        <a href="/admin.php" class="btn btn-outline-light btn-sm me-2">
+                        <a href="/ecoride/admin.php" class="btn btn-outline-light btn-sm me-2">
                             📊 Admin
                         </a>
                     </li>
                 <?php endif; ?>
                 <li class="nav-item">
-                    <a href="/deconnexion.php" class="btn btn-outline-light btn-sm">Déconnexion</a>
+                    <a href="/ecoride/deconnexion.php" class="btn btn-outline-light btn-sm">Déconnexion</a>
                 </li>
             </ul>
         </div>
@@ -301,8 +301,8 @@ try {
     <?php endif; ?>
 
     <div class="mb-4 text-end">
-        <a href="/ajouter-vehicule.php" class="btn btn-outline-primary btn-sm">Ajouter un véhicule ➕</a>
-        <a href="/creer-trajet.php" class="btn btn-outline-success btn-sm">Proposer un trajet ➕</a>
+        <a href="/ecoride/ajouter-vehicule.php" class="btn btn-outline-primary btn-sm">Ajouter un véhicule ➕</a>
+        <a href="/ecoride/creer-trajet.php" class="btn btn-outline-success btn-sm">Proposer un trajet ➕</a>
     </div>
 
     <hr class="my-5">
